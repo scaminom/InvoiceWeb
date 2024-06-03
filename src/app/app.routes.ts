@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { InvoiceComponent } from './core/invoice/invoice.component';
 
 export const routes: Routes = [
   {
@@ -7,8 +6,8 @@ export const routes: Routes = [
     loadChildren: () => import('./core/auth/auth.routes').then(m => m.AuthRoutes)
   },
   {
-    path: 'invoice',
-    component: InvoiceComponent
+    path: 'dashboard',
+    loadChildren: () => import('./core/main/main.routes').then(m => m.MainRoutes)
   },
   {
     path: '',
