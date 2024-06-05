@@ -15,13 +15,12 @@ export class NavBarComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  get userLogged() {
-    console.log(this.authService.user());
-    return this.authService.user();
+  get userLogged(): IUser | null {
+    return this.authService.currentUser;
   }
 
   logout() {
-    // this.authService.logout();
-    // this.router.navigate(['/login']);
+    this.authService.logout();
+    this.router.navigate(['/auth/login']);
   }
 }

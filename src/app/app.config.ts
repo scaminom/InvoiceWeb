@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -13,10 +13,11 @@ import { authTokenInterceptor } from './shared/interceptors/auth-token-intercept
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
     provideClientHydration(),
     provideAnimationsAsync(),
     provideAnimationsAsync(),
     provideHttpClient(withFetch(), withInterceptors([authTokenInterceptor])),
+    provideAnimationsAsync(),
   ],
 };
