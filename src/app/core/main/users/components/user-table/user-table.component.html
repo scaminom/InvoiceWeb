@@ -1,0 +1,37 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Nombre de usuario</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th class="text-center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(user of users(); track user) {
+    <tr>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.role }}</td>
+      <td class="flex justify-evenly">
+        <button
+          class="btn btn-secondary"
+          [routerLink]="['/dashboard/users/edit-user/', user.id]"
+        >
+          Editar
+        </button>
+        <button class="btn btn-neutral" (click)="onDeleteUser(user.id)">
+          Eliminar
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+<button class="btn btn-neutral" routerLink="/dashboard/users/new-user">
+  Nuevo
+</button>

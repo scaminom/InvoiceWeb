@@ -1,0 +1,32 @@
+<form [formGroup]="userForm" class="space-y-7">
+  <label class="input input-bordered flex items-center gap-2">
+    Nombre
+    <input
+      type="text"
+      class="grow"
+      placeholder=""
+      formControlName="firstName"
+    />
+  </label>
+  <label class="input input-bordered flex items-center gap-2">
+    Apellido
+    <input type="text" class="grow" placeholder="" formControlName="lastName" />
+  </label>
+  <label class="input input-bordered flex items-center gap-2">
+    Username
+    <input type="text" class="grow" placeholder="" formControlName="username" />
+  </label>
+  <label class="input input-bordered flex items-center gap-2">
+    Email
+    <input type="text" class="grow" placeholder="" formControlName="email" />
+  </label>
+  <label class="input input-bordered flex items-center gap-2">
+    Role
+    <input type="text" class="grow" placeholder="" formControlName="role" />
+  </label>
+  @if(isEditMode){
+  <button>Actualizar</button>
+  } @else {
+  <button>Crear</button>
+  }
+</form>

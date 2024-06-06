@@ -1,4 +1,5 @@
 export interface ILoginResponse {
+  id: number;
   token: string;
   expirationTime: string;
   firstName: string;

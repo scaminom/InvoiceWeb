@@ -26,6 +26,7 @@ export class AuthService {
 
   private destructureUser(user: ILoginResponse): IUser {
     return {
+      id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
       username: user.username,
