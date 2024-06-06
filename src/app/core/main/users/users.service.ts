@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from '../../auth/interfaces/user-interface';
-import { UpdateUser } from '../interfaces/update-user.interface';
-import { CreateUser } from '../interfaces/create-user.interface';
+import { UpdateUser } from './interfaces/update-user.interface';
+import { CreateUser } from './interfaces/create-user.interface';
 
 @Injectable({
   providedIn: 'root',
