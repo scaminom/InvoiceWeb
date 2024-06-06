@@ -1,12 +1,12 @@
 import { Component, inject, input, output } from '@angular/core';
 import { IUser } from '../../../../auth/interfaces/user-interface';
 import { RouterLink } from '@angular/router';
-import { UsersService } from '../../users.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-user-table',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, MatIconModule],
   templateUrl: './user-table.component.html',
   styles: ``,
 })

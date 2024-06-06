@@ -1,4 +1,6 @@
-<app-user-table
-  [users]="users"
-  (sendUserId)="deleteUser(+$event)"
-></app-user-table>
+<div class="rounded bg-slate-200 py-3 px-3">
+  <app-user-table
+    [users]="users"
+    (sendUserId)="deleteUser(+$event)"
+  ></app-user-table>
+</div>

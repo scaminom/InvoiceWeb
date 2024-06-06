@@ -1,9 +1,24 @@
-<div class="drawer drawer-open">
-  <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-side">
-    <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-      <li><a>Sidebar Item 1</a></li>
-      <li><a>Sidebar Item 2</a></li>
-    </ul>
+<div
+  class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900"
+>
+  <div class="text-gray-100 text-xl">
+    <div class="p-2.5 mt-1 flex items-center">
+      <h1 class="font-bold text-gray-200 text-[15px] ml-3">Facturacion</h1>
+      <i class="bi bi-x cursor-pointer ml-28 lg:hidden"></i>
+    </div>
+    <div class="my-2 bg-gray-600 h-[1px]"></div>
+  </div>
+  <div
+    class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    routerLink="/users"
+  >
+    <mat-icon>person</mat-icon>
+    <span class="text-[15px] ml-4 text-gray-200 font-bold">Usuarios</span>
+  </div>
+  <div
+    class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+  >
+    <mat-icon>store</mat-icon>
+    <span class="text-[15px] ml-4 text-gray-200 font-bold">Productos</span>
   </div>
 </div>

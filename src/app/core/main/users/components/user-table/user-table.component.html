@@ -1,37 +1,52 @@
-<table class="table">
+<div class="flex justify-end w-full mb-4">
+  <button
+    class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 py-2 px-5 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out"
+    routerLink="/dashboard/users/new-user"
+  >
+    <div class="flex justify-center items-center">
+      <mat-icon>person</mat-icon>
+      <span class="mx-1"></span>
+      Nuevo Usuario
+    </div>
+  </button>
+</div>
+
+<table class="table table-zebra table-auto w-full border-collapse">
   <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Nombre de usuario</th>
-      <th>Email</th>
-      <th>Role</th>
-      <th class="text-center">Actions</th>
+    <tr class="bg-gray-300">
+      <th class="px-4 py-2 text-center">Nombre</th>
+      <th class="px-4 py-2 text-center">Apellido</th>
+      <th class="px-4 py-2 text-center">Username</th>
+      <th class="px-4 py-2 text-center">Email</th>
+      <th class="px-4 py-2 text-center">Role</th>
+      <th class="px-4 py-2 text-center">Acciones</th>
     </tr>
   </thead>
   <tbody>
     @for(user of users(); track user) {
-    <tr>
-      <td>{{ user.firstName }}</td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.username }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.role }}</td>
-      <td class="flex justify-evenly">
+    <tr class="even:bg-gray-100 odd:bg-white">
+      <td class="border px-4 py-2">{{ user.firstName }}</td>
+      <td class="border px-4 py-2">{{ user.lastName }}</td>
+      <td class="border px-4 py-2">{{ user.username }}</td>
+      <td class="border px-4 py-2">{{ user.email }}</td>
+      <td class="border px-4 py-2">{{ user.role }}</td>
+      <td class="border px-4 py-2 flex justify-center space-x-2">
         <button
-          class="btn btn-secondary"
+          class="btn btn-neutral btn-sm flex items-center space-x-1"
           [routerLink]="['/dashboard/users/edit-user/', user.id]"
+          matTooltip="Editar Usuario"
         >
-          Editar
+          <mat-icon>edit</mat-icon>
         </button>
-        <button class="btn btn-neutral" (click)="onDeleteUser(user.id)">
-          Eliminar
+        <button
+          class="btn btn-error btn-sm flex items-center space-x-1"
+          (click)="onDeleteUser(user.id)"
+          matTooltip="Eliminar Usuario"
+        >
+          <mat-icon>delete</mat-icon>
         </button>
       </td>
     </tr>
     }
   </tbody>
 </table>
-<button class="btn btn-neutral" routerLink="/dashboard/users/new-user">
-  Nuevo
-</button>

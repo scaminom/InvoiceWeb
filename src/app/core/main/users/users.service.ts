@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from '../../auth/interfaces/user-interface';
+import { UpdateUser } from '../interfaces/update-user.interface';
+import { CreateUser } from '../interfaces/create-user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +19,14 @@ export class UsersService {
 
   public getUsers(): Observable<IUser[]> {
     return this.http.get<IUser[]>(this.baseUrl);
+  }
+
+  public updateUser(id: number, user: UpdateUser): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/${id}`, user);
+  }
+
+  public createUser(user: CreateUser): Observable<void> {
+    return this.http.post<void>(this.baseUrl, user);
   }
 
   public deleteUser(id: number): Observable<void> {

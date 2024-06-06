@@ -10,11 +10,9 @@ export const authGuard: CanActivateFn = (route, state): Observable<boolean> => {
   return authService.checkAuthentication().pipe(
     tap((isAuthenticated) => {
       if (!isAuthenticated) {
-        // router.navigate(['/auth/login']);
+        router.navigate(['/auth/login']);
         authService.logout();
       }
     })
   );
 };
-
-// if (!this.router.url.includes('edit')) return;
