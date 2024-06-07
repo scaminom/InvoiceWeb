@@ -3,6 +3,7 @@ import { AuthService } from '../../../core/auth/auth.service';
 import { JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { IUser } from '../../../core/auth/interfaces/user-interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nav-bar',
@@ -20,7 +21,24 @@ export class NavBarComponent {
   }
 
   logout() {
-    this.authService.logout();
-    this.router.navigate(['/auth/login']);
+    this.authService.logout().subscribe({
+      next: () => {
+        this.router.navigate(['/auth/login']);
+        Swal.fire({
+          title: 'Sesión cerrada',
+          text: 'Hasta luego',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        });
+      },
+      error: () => {
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al cerrar la sesión',
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+        });
+      },
+    });
   }
 }

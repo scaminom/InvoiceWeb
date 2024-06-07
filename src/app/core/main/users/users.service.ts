@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { IUser } from '../../auth/interfaces/user-interface';
 import { UpdateUser } from '../interfaces/update-user.interface';
 import { CreateUser } from '../interfaces/create-user.interface';
@@ -14,7 +14,11 @@ export class UsersService {
   private http = inject(HttpClient);
 
   public getUserById(id: number): Observable<IUser> {
-    return this.http.get<IUser>(`${this.baseUrl}/${id}`);
+    return this.http.get<IUser>(`${this.baseUrl}/${id}`).pipe(
+      catchError((error) => {
+        return throwError(() => new Error(error.error.message));
+      })
+    );
   }
 
   public getUsers(): Observable<IUser[]> {

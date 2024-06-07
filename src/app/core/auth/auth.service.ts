@@ -1,5 +1,13 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { Observable, catchError, debounceTime, map, of, tap } from 'rxjs';
+import {
+  Observable,
+  catchError,
+  debounceTime,
+  map,
+  of,
+  tap,
+  throwError,
+} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ILoginResponse } from './interfaces/login-response.interface';
 import { BrowserStorageService } from '../../shared/services/browser-storage.service';
@@ -59,16 +67,17 @@ export class AuthService {
         tap((response) => this.setAuthentication(response)),
         map(() => true),
         catchError((error) => {
-          console.error('Login failed:', error);
-          return of(false);
+          console.log('Error:', error);
+          return throwError(() => new Error(error.error.message));
         })
       );
   }
 
-  logout(): void {
+  logout(): Observable<void> {
     this._user.set(null);
     this.localStorage.clear();
     this._authStatus.set(AuthStatus.UNAUTHENTICATED);
+    return of(undefined);
   }
 
   checkAuthentication(): Observable<boolean> {
