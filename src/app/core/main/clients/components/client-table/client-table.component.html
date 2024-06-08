@@ -1,0 +1,53 @@
+<div class="flex justify-end w-full mb-4">
+    <button
+      class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 py-2 px-5 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out"
+      routerLink="/dashboard/clients/new-client"
+    >
+      <div class="flex justify-center items-center">
+        <mat-icon>person</mat-icon>
+        <span class="mx-1"></span>
+        Nuevo Cliente
+      </div>
+    </button>
+  </div>
+  
+  <table class="table table-zebra table-auto w-full border-collapse">
+    <thead>
+      <tr class="bg-gray-300">
+        <th class="px-4 py-2 text-center">Identificacion</th>
+        <th class="px-4 py-2 text-center">Tipo de identificacion</th>
+        <th class="px-4 py-2 text-center">Razon Social</th>
+        <th class="px-4 py-2 text-center">Direccion</th>
+        <th class="px-4 py-2 text-center">Correo</th>
+        <th class="px-4 py-2 text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(client of clients(); track client) {
+      <tr class="even:bg-gray-100 odd:bg-white">
+        <td class="border px-4 py-2">{{ client.identificacionComprador }}</td>
+        <td class="border px-4 py-2">{{ client.tipoIdentificacion }}</td>
+        <td class="border px-4 py-2">{{ client.razonSocialComprador }}</td>
+        <td class="border px-4 py-2">{{ client.direccionComprador }}</td>
+        <td class="border px-4 py-2">{{ client.correo }}</td>
+        <td class="border px-4 py-2 flex justify-center space-x-2">
+          <button
+            class="btn btn-neutral btn-sm flex items-center space-x-1"
+            [routerLink]="['/dashboard/clients/edit-client/', client.id]"
+            matTooltip="Editar Cliente"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            class="btn btn-error btn-sm flex items-center space-x-1"
+            (click)="onDeleteClient(client.id)"
+            matTooltip="Eliminar Cliente"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  

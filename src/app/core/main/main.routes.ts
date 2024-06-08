@@ -17,9 +17,11 @@ export const MainRoutes: Routes = [
           import('./users/user.routes').then((m) => m.UserRoutes),
       },
       {
-        path: '**',
-        redirectTo: 'users',
+        path: 'clients',
+        loadChildren: () =>
+          import('./clients/client.routes').then((m) => m.ClientRoutes),
       },
+      
     ],
   },
 ];
