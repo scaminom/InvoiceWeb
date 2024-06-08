@@ -22,6 +22,12 @@ export const MainRoutes: Routes = [
           import('./clients/client.routes').then((m) => m.ClientRoutes),
       },
       {
+        path: 'products',
+        loadChildren: () =>
+          import('./products/products.routes').then((m) => m.ProductsRoutes),
+      
+      },
+      {
         path: '**',
         redirectTo: 'users',
         pathMatch: 'full',
