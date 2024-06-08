@@ -26,11 +26,21 @@ export class UsersService {
   }
 
   public updateUser(id: number, user: UpdateUser): Observable<void> {
-    return this.http.put<void>(`${this.baseUrl}/${id}`, user);
+    return this.http.put<void>(`${this.baseUrl}/${id}`, user).pipe(
+      catchError((error) => {
+        let errorMessages = Object.values(error.error).join('<br>');
+        return throwError(() => new Error(errorMessages));
+      })
+    );
   }
 
   public createUser(user: CreateUser): Observable<void> {
-    return this.http.post<void>(this.baseUrl, user);
+    return this.http.post<void>(this.baseUrl, user).pipe(
+      catchError((error) => {
+        let errorMessages = Object.values(error.error).join('<br>');
+        return throwError(() => new Error(errorMessages));
+      })
+    );
   }
 
   public deleteUser(id: number): Observable<void> {

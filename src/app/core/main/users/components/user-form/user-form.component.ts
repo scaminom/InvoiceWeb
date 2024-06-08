@@ -59,7 +59,16 @@ export class UserFormComponent implements OnInit {
           Validators.email('El email no es valido'),
         ],
       ],
-      password: ['', [Validators.required('La contraseña es requerida')]],
+      password: [
+        '',
+        [
+          Validators.required('La contraseña es requerida'),
+          Validators.minLength(
+            6,
+            'La contraseña debe tener al menos 6 caracteres'
+          ),
+        ],
+      ],
       role: ['', [Validators.required('El rol es requerido')]],
     });
   }
@@ -75,7 +84,7 @@ export class UserFormComponent implements OnInit {
           text: 'No se pudo obtener el usuario',
           icon: 'error',
         });
-        this.router.navigate(['/users']);
+        this.router.navigate(['/dashboard/users']);
       },
     });
   }
@@ -86,11 +95,19 @@ export class UserFormComponent implements OnInit {
 
     this.userService.updateUser(id, user).subscribe({
       next: () => {
-        this.router.navigate(['/users']);
+        this.router.navigate(['/dashboard/users']);
         Swal.fire({
           title: 'Usuario actualizado',
           text: 'El usuario ha sido actualizado correctamente',
           icon: 'success',
+        });
+      },
+      error: (error) => {
+        Swal.fire({
+          title: 'Error',
+          html: error.message,
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
         });
       },
     });
@@ -103,11 +120,19 @@ export class UserFormComponent implements OnInit {
 
     this.userService.createUser(user).subscribe({
       next: () => {
-        this.router.navigate(['/users']);
+        this.router.navigate(['/dashboard/users']);
         Swal.fire({
           title: 'Usuario creado',
           text: 'El usuario ha sido creado correctamente',
           icon: 'success',
+        });
+      },
+      error: (error) => {
+        Swal.fire({
+          title: 'Error',
+          html: error.message,
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
         });
       },
     });

@@ -67,7 +67,6 @@ export class AuthService {
         tap((response) => this.setAuthentication(response)),
         map(() => true),
         catchError((error) => {
-          console.log('Error:', error);
           return throwError(() => new Error(error.error.message));
         })
       );

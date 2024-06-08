@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ClientTableComponent } from '../../components/client-table/client-table.component'; 
+import { ClientTableComponent } from '../../components/client-table/client-table.component';
 import { IClient } from '../../interfaces/client-interface';
-import { ClientsService } from '../../clients.service'; 
-import { RouterLink } from '@angular/router';
+import { ClientsService } from '../../clients.service';
+import { needConfirmation } from '../../../../../shared/components/confirm-dialog/decorators/confirm-dialog.decorator';
 
 @Component({
   selector: 'app-client-table-page',
