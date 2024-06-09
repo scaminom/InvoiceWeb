@@ -12,9 +12,12 @@
             </div>
           </button>
         </div>
-
-        <app-product-card-page [products]="products" (sendProductId)="deleteProduct(+$event)">
-        </app-product-card-page>
+        <div class="grid grid-cols-4 gap-5">
+        @for (product of products; track products) {
+          <app-product-card [product]="product" (sendProductId)="deleteProduct(+$event)">
+          </app-product-card>
+        }
+      </div>
 
       </div>
     </div>

@@ -1,22 +1,22 @@
-import { Component, input, output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IProduct } from '../../interfaces/product-interface';
-import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-product-card-page',
-  standalone: true,
+  selector: 'app-product-card',
   imports: [CommonModule, RouterLink, RouterLinkActive],
+  standalone: true,
   templateUrl: './product-card-page.component.html',
-  styles: ``
+  styles: ``, // Si tienes estilos específicos para este componente
 })
 export class ProductCardPageComponent {
-  products = input.required<IProduct[]>();
-  sendProductId = output<number>();
+  @Input() product!: IProduct;
+  @Output() deleteProduct = new EventEmitter<number>();
 
-  onDeleteProduct(id: number): void {
-    this.sendProductId.emit(id);
+  onDeleteProduct(): void {
+    this.deleteProduct.emit(this.product.id);
   }
-
-
 }
+
+
