@@ -15,7 +15,9 @@ export class ProductCardPageComponent {
   @Output() deleteProduct = new EventEmitter<number>();
 
   onDeleteProduct(): void {
+    console.log('delete product');
     this.deleteProduct.emit(this.product.id);
+    console.log('delete product', this.product.id);
   }
 }
 

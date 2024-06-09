@@ -29,6 +29,7 @@ export class ProductTableComponent implements OnInit{
     message: '¿Estás seguro de eliminar este producto?',
   })
   deleteProduct(id: number): void {
+    console.log('delete product2');  
     this.productService.deleteProduct(id).subscribe(() => {
         this.products = this.products.filter((product) => product.id !== id);
       },

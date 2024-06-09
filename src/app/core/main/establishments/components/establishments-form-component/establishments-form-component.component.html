@@ -1,0 +1,92 @@
+<form [formGroup]="establishmentForm" class="space-y-7">
+    <div>
+        <label for="ruc" class="block mb-2 text-sm font-medium text-gray-900">RUC</label>
+        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="ruc" />
+        <mat-error class="flex mt-1 text-red-600">
+          <arv-validation-messages for="ruc"></arv-validation-messages>
+        </mat-error>
+      </div>
+
+    <div>
+      <label for="estab" class="block mb-2 text-sm font-medium text-gray-900">Establecimiento ID</label>
+      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="estab" />
+      <mat-error class="flex mt-1 text-red-600">
+        <arv-validation-messages for="estab"></arv-validation-messages>
+      </mat-error>
+    </div>
+  
+    <div>
+      <label for="razonSocial" class="block mb-2 text-sm font-medium text-gray-900">Razón social</label>
+      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="razonSocial" />
+      <mat-error class="flex mt-1 text-red-600">
+        <arv-validation-messages for="razonSocial"></arv-validation-messages>
+      </mat-error>
+    </div>
+  
+    <div>
+      <label for="ptoEmi" class="block mb-2 text-sm font-medium text-gray-900">Lugar de emisión</label>
+      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="ptoEmi" />
+      <mat-error class="flex mt-1 text-red-600">
+        <arv-validation-messages for="ptoEmi"></arv-validation-messages>
+      </mat-error>
+    </div>
+  
+    <div>
+      <label for="ambiente" class="block mb-2 text-sm font-medium text-gray-900">Ambiente</label>
+      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="ambiente" />
+      <mat-error class="flex mt-1 text-red-600">
+        <arv-validation-messages for="ambiente"></arv-validation-messages>
+      </mat-error>
+    </div>
+  
+    <div>
+      <label for="obligadoContabilidad" class="block mb-2 text-sm font-medium text-gray-900">Obligado Contabilidad</label>
+      <mat-radio-group
+      aria-label="Obligado a contablididad"
+      class="bg-white flex flex-col rounded-lg p-2 mb-1"
+      formControlName="obligadoContabilidad"
+      color="primary"
+    >
+      <mat-radio-button value="SI" checked="true">SI</mat-radio-button>
+      <mat-radio-button value="NO">NO</mat-radio-button>
+    </mat-radio-group>
+      <mat-error class="flex mt-1 text-red-600">
+        <arv-validation-messages for="obligadoContabilidad"></arv-validation-messages>
+      </mat-error>
+    </div>
+
+    <div>
+        <label for="dirEstablecimiento" class="block mb-2 text-sm font-medium text-gray-900">Dirección del establecimiento</label>
+        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="dirEstablecimiento" />
+        <mat-error class="flex mt-1 text-red-600">
+          <arv-validation-messages for="dirEstablecimiento"></arv-validation-messages>
+        </mat-error>
+      </div>
+
+      <div>
+        <label for="dirMatriz" class="block mb-2 text-sm font-medium text-gray-900">Dirección matriz</label>
+        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="dirMatriz" />
+        <mat-error class="flex mt-1 text-red-600">
+          <arv-validation-messages for="dirMatriz"></arv-validation-messages>
+        </mat-error>
+      </div>
+
+  
+    @if(isEditMode){
+        <button
+          class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 py-2 px-5 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out"
+          (click)="updateEstablishment()"
+        >
+          Actualizar
+        </button>
+        } @else {
+        <button
+          class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 py-2 px-5 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out"
+          (click)="createEstablishment()"
+        >
+          Crear
+        </button>
+        }
+  </form>
+  
+  
