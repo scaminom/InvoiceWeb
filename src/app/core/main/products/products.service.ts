@@ -11,13 +11,11 @@ import { ICodigoTarifa, IProduct } from './interfaces/product-interface';
 export class ProductsService {
   private readonly url = 'http://localhost:8080/productos';
   private http = inject(HttpClient);
-  private localStorage = inject(BrowserStorageService);
   private router = inject(Router);
 
   constructor() {}
 
   public getAllProducts(): Observable<IProduct[]> {
-    this.localStorage.setItem('product', JSON.stringify(this.url));
     return this.http.get<IProduct[]>(`${this.url}`);
   }
 
@@ -40,4 +38,5 @@ export class ProductsService {
   public getAllTaxsCodes(): Observable<ICodigoTarifa[]>{
      return this.http.get<ICodigoTarifa[]>('http://localhost:8080/tarifa-iva');
   }
+
 }

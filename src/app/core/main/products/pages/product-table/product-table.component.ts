@@ -4,11 +4,12 @@ import { IProduct } from '../../interfaces/product-interface';
 import { ProductsService } from '../../products.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { needConfirmation } from '../../../../../shared/components/confirm-dialog/decorators/confirm-dialog.decorator';
+import { ProductCardPageComponent } from '../../components/product-card-page/product-card-page.component';
 
 @Component({
   selector: 'app-product-table',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive], // Importa los módulos necesarios
+  imports: [CommonModule, RouterLink, RouterLinkActive, ProductCardPageComponent], // Importa los módulos necesarios
   templateUrl: './product-table.component.html',
   styles: ``,
 })
@@ -24,8 +25,8 @@ export class ProductTableComponent implements OnInit{
   }
 
   @needConfirmation({
-    title: 'Eliminar Usuario',
-    message: '¿Estás seguro de eliminar este usuario?',
+    title: 'Eliminar Producto',
+    message: '¿Estás seguro de eliminar este producto?',
   })
   deleteProduct(id: number): void {
     this.productService.deleteProduct(id).subscribe(() => {

@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ICodigoTarifa } from '../../interfaces/product-interface';
+import { ICodigoTarifa, IProduct } from '../../interfaces/product-interface';
+import { IProductAPI } from '../../interfaces/productAPI-interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,6 +9,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { Router } from '@angular/router';
 import { ProductsService } from '../../products.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import {
   ReactiveValidationModule,
@@ -22,7 +24,8 @@ import {
     MatInputModule,
     MatFormFieldModule,
     MatRadioModule,
-    ReactiveValidationModule,],
+    ReactiveValidationModule,
+    CommonModule,],
   templateUrl: './product-form.component.html',
   styles: ``,
 })
@@ -42,9 +45,10 @@ export class ProductFormComponent implements OnInit{
         this.taxCodes = taxCodes;
       },
     });
+  
     this.isEditMode = this.router.url.includes('edit');
     this.initForm();
-
+  
     if (this.isEditMode) {
       this.activeRoute.params.subscribe((params) => {
         const id = params['id'];
@@ -52,6 +56,7 @@ export class ProductFormComponent implements OnInit{
       });
     }
   }
+  
 
   initForm(): void {
     this.productForm = this.formBuilder.group({
@@ -89,7 +94,12 @@ export class ProductFormComponent implements OnInit{
   private retrieveProduct(id: number): void {
     this.productService.getProductById(id).subscribe({
       next: (product) => {
-        this.productForm.patchValue(product);
+        // Asegurarte de que el valor de codigoTarifa se selecciona correctamente
+        const productData = {
+          ...product,
+          codigoTarifa: product.codigoTarifa.id // Asegúrate de que solo se asigna el ID
+        };
+        this.productForm.patchValue(productData);
       },
       error: () => {
         Swal.fire({
@@ -101,11 +111,16 @@ export class ProductFormComponent implements OnInit{
       },
     });
   }
+  
+  
+  
 
   onUpdate(): void {
     const id = this.activeRoute.snapshot.params['id'];
     const product = this.productForm.value;
-
+    // Aquí podrías asegurarte de enviar solo el id de la tarifa de impuestos
+     // Convertir a string si es necesario
+    console.log('Product:', product); 
     this.productService.updateProduct(id, product).subscribe({
       next: () => {
         this.router.navigate(['/dashboard/products']);
@@ -117,11 +132,12 @@ export class ProductFormComponent implements OnInit{
       },
     });
   }
+  
 
   onCreate(): void {
     if (this.productForm.invalid) return;
     const product = this.productForm.value;
-
+    console.log('Product:', product); 
     this.productService.createProduct(product).subscribe({
       next: () => {
         this.router.navigate(['/dashboard/products']);
