@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { EstablishmentsFormComponent } from '../../components/establishments-form-component/establishments-form-component.component';
+import { EstablishmentFormComponent } from '../../components/establishments-form-component/establishments-form-component.component';
 
 @Component({
-  selector: 'app-establishments-update-page',
+  selector: 'app-establishment-update-page',
   standalone: true,
-  imports: [EstablishmentsFormComponent],
+  imports: [EstablishmentFormComponent],
   templateUrl: './establishments-update-page.component.html',
   styles: ``,
 })

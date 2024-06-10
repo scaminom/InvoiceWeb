@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { EstablishmentsFormComponent } from "../../components/establishments-form-component/establishments-form-component.component";
+import { EstablishmentFormComponent } from "../../components/establishments-form-component/establishments-form-component.component";
 
 @Component({
-    selector: 'app-establishments-create-page',
+    selector: 'app-establishment-create-page',
     standalone: true,
     templateUrl: './establishments-create-page.component.html',
     styles: ``,
-    imports: [EstablishmentsFormComponent]
+    imports: [EstablishmentFormComponent]
 })
 export class EstablishmentCreatePageComponent {}
 

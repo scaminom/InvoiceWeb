@@ -12,7 +12,7 @@ import { ReactiveValidationModule, Validators } from 'angular-reactive-validatio
 import { EstablishmentsService } from '../../establishments.service'
 
 @Component({
-  selector: 'app-establishments-form-component',
+  selector: 'app-establishment-form-component',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -27,7 +27,7 @@ import { EstablishmentsService } from '../../establishments.service'
   templateUrl: './establishments-form-component.component.html',
   styles: ``,
 })
-export class EstablishmentsFormComponent implements OnInit{
+export class EstablishmentFormComponent implements OnInit{
   private activeRoute = inject(ActivatedRoute);
   private establishmentsService = inject(EstablishmentsService);
   public router = inject(Router);

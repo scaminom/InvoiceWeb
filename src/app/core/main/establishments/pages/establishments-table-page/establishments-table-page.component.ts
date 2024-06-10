@@ -1,18 +1,18 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { IEstablismnet} from '../../interfaces/establishment.iterface';
+import { IEstablishment} from '../../interfaces/establishment.iterface';
 import { EstablishmentsService } from '../../establishments.service';
 import { needConfirmation } from '../../../../../shared/components/confirm-dialog/decorators/confirm-dialog.decorator';
-import { EstablishmentsTableComponent } from '../../components/establishments-table-component/establishments-table-component.component';
+import { EstablishmentTableComponent } from '../../components/establishments-table-component/establishments-table-component.component';
 
 @Component({
-  selector: 'app-establishments-table-page',
+  selector: 'app-establishment-table-page',
   standalone: true,
-  imports: [EstablishmentsTableComponent],
+  imports: [EstablishmentTableComponent],
   templateUrl: './establishments-table-page.component.html',
   styles: ``,
 })
-export class EstablishmentsTablePageComponent implements OnInit {
-  establishments : IEstablismnet[] = [];
+export class EstablishmentTablePageComponent implements OnInit {
+  establishments : IEstablishment[] = [];
 
   private establishmentService = inject(EstablishmentsService);
 
