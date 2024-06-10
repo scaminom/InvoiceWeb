@@ -8,6 +8,6 @@ import { EstablishmentsFormComponent } from '../../components/establishments-for
   templateUrl: './establishments-update-page.component.html',
   styles: ``,
 })
-export class EstablishmentsUpdatePageComponent {
+export class EstablishmentUpdatePageComponent {
 
 }

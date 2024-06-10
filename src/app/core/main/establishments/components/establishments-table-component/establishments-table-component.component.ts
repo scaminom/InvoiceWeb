@@ -2,7 +2,7 @@
 import { Component, inject, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { IEstablismnets } from '../../interfaces/establishments.iterface';
+import { IEstablismnet} from '../../interfaces/establishment.iterface';
 
 @Component({
   selector: 'app-establishment-table',
@@ -12,10 +12,10 @@ import { IEstablismnets } from '../../interfaces/establishments.iterface';
   styles: ``,
 })
 export class EstablishmentsTableComponent {
-  establishments = input.required<IEstablismnets[]>();
-  sendEstablishmentid = output<string>();
+  establishments = input.required<IEstablismnet[]>();
+  sendEstablishmentId = output<string>();
 
   onDeleteEstablishment(id: string): void {
-    this.sendEstablishmentid.emit(id.toString());
+    this.sendEstablishmentId.emit(id.toString());
   }
 }

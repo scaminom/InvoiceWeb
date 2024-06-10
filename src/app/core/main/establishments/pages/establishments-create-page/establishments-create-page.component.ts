@@ -8,5 +8,5 @@ import { EstablishmentsFormComponent } from "../../components/establishments-for
     styles: ``,
     imports: [EstablishmentsFormComponent]
 })
-export class EstablishmentsCreatePageComponent {}
+export class EstablishmentCreatePageComponent {}
 

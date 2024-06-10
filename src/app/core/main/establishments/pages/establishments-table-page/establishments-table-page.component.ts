@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { IEstablismnets } from '../../interfaces/establishments.iterface';
+import { IEstablismnet} from '../../interfaces/establishment.iterface';
 import { EstablishmentsService } from '../../establishments.service';
 import { needConfirmation } from '../../../../../shared/components/confirm-dialog/decorators/confirm-dialog.decorator';
 import { EstablishmentsTableComponent } from '../../components/establishments-table-component/establishments-table-component.component';
@@ -12,13 +12,13 @@ import { EstablishmentsTableComponent } from '../../components/establishments-ta
   styles: ``,
 })
 export class EstablishmentsTablePageComponent implements OnInit {
-  establishment : IEstablismnets[] = [];
+  establishments : IEstablismnet[] = [];
 
-  private establishmentervice = inject(EstablishmentsService);
+  private establishmentService = inject(EstablishmentsService);
 
   ngOnInit(): void {
-    this.establishmentervice.getAllEstablishments().subscribe((establishment) => {
-      this.establishment = establishment;
+    this.establishmentService.getAllEstablishments().subscribe((establishment) => {
+      this.establishments = establishment;
     });
   }
 
@@ -26,10 +26,10 @@ export class EstablishmentsTablePageComponent implements OnInit {
     title: 'Eliminar Establecimiento',
     message: '¿Estás seguro de eliminar este establecimiento?',
   })
-  deleteEstablishments(id: string): void {
+  deleteEstablishment(id: string): void {
     
-    this.establishmentervice.deleteEstablishment(id).subscribe(() => {
-        this.establishment = this.establishment.filter((esta) => esta.id !== id);
+    this.establishmentService.deleteEstablishment(id).subscribe(() => {
+        this.establishments = this.establishments.filter((esta) => esta.id !== id);
       },
     );
   }

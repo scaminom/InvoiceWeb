@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { IEstablismnets } from './interfaces/establishments.iterface';
-import { Observable } from 'rxjs';
+import { IEstablismnet } from './interfaces/establishment.iterface';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,24 +14,42 @@ export class EstablishmentsService {
 
   constructor() { }
 
-  public getAllEstablishments(): Observable<IEstablismnets[]> {
-    return this.http.get<IEstablismnets[]>(`${this.url}`);
+  public getAllEstablishments(): Observable<IEstablismnet[]> {
+    return this.http.get<IEstablismnet[]>(`${this.url}`);
   }
 
-  public getEstablishmentById(id: number): Observable<IEstablismnets> {
-    return this.http.get<IEstablismnets>(`${this.url}/${id}`);
+  public getEstablishmentById(id: number): Observable<IEstablismnet> {
+    return this.http.get<IEstablismnet>(`${this.url}/${id}`);
   }
 
-  public createEstablishment(establishment: IEstablismnets): Observable<IEstablismnets> {
-    return this.http.post<IEstablismnets>(`${this.url}`, establishment);
+  public createEstablishment(establishment: IEstablismnet): Observable<IEstablismnet> {
+    return this.http.post<IEstablismnet>(`${this.url}`, establishment).pipe(
+      catchError((error) => {
+        let errorMessage = Object.values(error.error).join('<br>');
+        return throwError(() => new Error(errorMessage));
+      }
+      )
+    );
   }
 
-  public updateEstablishment(id: number, establishment: IEstablismnets): Observable<IEstablismnets> {
-    return this.http.put<IEstablismnets>(`${this.url}/${id}`, establishment);
+  public updateEstablishment(id: number, establishment: IEstablismnet): Observable<IEstablismnet> {
+    return this.http.put<IEstablismnet>(`${this.url}/${id}`, establishment).pipe(
+      catchError((error) => {
+        let errorMessage = Object.values(error.error).join('<br>');
+        return throwError(() => new Error(errorMessage));
+      }
+      )
+    );
   }
 
-  public deleteEstablishment(id: string): Observable<IEstablismnets> {
-    return this.http.delete<IEstablismnets>(`${this.url}/${id}`);
+  public deleteEstablishment(id: string): Observable<IEstablismnet> {
+    return this.http.delete<IEstablismnet>(`${this.url}/${id}`).pipe(
+      catchError((error) => {
+        let errorMessage = Object.values(error.error).join('<br>');
+        return throwError(() => new Error(errorMessage));
+      }
+      )
+    );
   }
 
   
