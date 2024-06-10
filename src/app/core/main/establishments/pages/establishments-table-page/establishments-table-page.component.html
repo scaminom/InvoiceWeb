@@ -1,0 +1,6 @@
+<div class="rounded bg-slate-50 py-3 px-3">
+    <app-establishment-table
+        [establishments]="establishments"
+        (sendEstablishmentId)="deleteEstablishment($event)"
+    ></app-establishment-table>
+</div>
