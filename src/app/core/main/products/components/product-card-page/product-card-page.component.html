@@ -1,14 +1,14 @@
 <div class="max-w-xs overflow-hidden bg-white rounded-lg shadow-2xl">
     <img class="object-cover w-full h-40 mt-2" [src]="product().urlImage" [alt]=" product().nombre">
     <div class="px-4 py-2">
-      <h1 class="text-lg font-extrabold text-gray-800 uppercase">{{ product().nombre }}</h1>
-      <p class="mt-1 text-sm text-gray-600">Descripción: {{  product().descripcion }}</p>
-      <p class="mt-1 text-sm text-gray-600">Unidades: {{  product().existencia }}</p>
-      <p class="mt-1 text-sm text-gray-600">Impuesto: {{  product().codigoTarifa.descripcion }} %</p>
+      <h1 class="text-2xl flex items-center justify-center font-bold text-gray-900">{{ product().nombre }}</h1>
+      <p class="mt-1 text-sm font-extralight text-gray-600">Descripción: {{  product().descripcion }}</p>
+      <p class="mt-1 text-sm font-extralight text-gray-600">Unidades: {{  product().existencia }}</p>
+      <p class="mt-1 text-sm font-extralight text-gray-600">Impuesto: {{  product().codigoTarifa.descripcion }} %</p>
     </div>
   
-    <div class="flex flex-col items-center justify-between px-4 py-2 bg-gray-300">
-      <h1 class="text-gray-700">Valor unitario: {{  product().precioUnitario }}$</h1>
+    <div class="flex flex-col items-center justify-between px-4 py-2 bg-gray-300" >
+      <p class="text-base font-medium text-gray-900" >Valor unitario: {{  product().precioUnitario }}$</p>
       <div class="flex items-center gap-x-6">
         <button class="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none" (click)="onDeleteProduct( product().id)">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
