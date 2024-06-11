@@ -42,20 +42,20 @@ export class TaxFormComponent implements OnInit {
     if (this.isEditMode) {
       this.activeRoute.params.subscribe((params) => {
         const id = params['id'];
-        this.retrievetax(id);
+        this.retrieveTax(id);
       });
     }
   }
 
   initForm(): void {
     this.taxForm = this.formBuilder.group({
-      codigo: ['', [Validators.required('El código es requerido')]],
+      codigo: ['', [Validators.required('El código es requerido'),Validators.minLength(1,'El código debe ser de una unidad'), Validators.maxLength(1,'El código debe ser de una unidad')]],
       descripcion: ['', [Validators.required('La descripción es requerido')]],
-      porcentaje: ['', [Validators.required('El porcentaje es requerido')]],
+      porcentaje: ['', [Validators.required('El porcentaje es requerido'),Validators.min(0,'El porcentaje mínimo es de 0.0'), Validators.max(1,'El porcentaje máximo es de 1.0')]],
     });
   }
 
-  private retrievetax(id: number): void {
+  private retrieveTax(id: number): void {
     this.taxService.getTaxById(id).subscribe({
       next: (tax) => {
         this.taxForm.patchValue(tax);
