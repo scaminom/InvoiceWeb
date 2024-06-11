@@ -3,7 +3,8 @@ import { Observable, catchError, debounceTime, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BrowserStorageService } from '../../../shared/services/browser-storage.service';
 import { Router } from '@angular/router';
-import { ICodigoTarifa, IProduct } from './interfaces/product-interface';
+import { IProduct } from './interfaces/product-interface';
+
 
 @Injectable({
   providedIn: 'root',
@@ -35,8 +36,5 @@ export class ProductsService {
     return this.http.delete<IProduct>(`${this.url}/${id}`);
   }
 
-  public getAllTaxsCodes(): Observable<ICodigoTarifa[]>{
-     return this.http.get<ICodigoTarifa[]>('http://localhost:8080/tarifa-iva');
-  }
 
 }

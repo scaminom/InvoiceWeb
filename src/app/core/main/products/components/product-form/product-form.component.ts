@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ICodigoTarifa, IProduct } from '../../interfaces/product-interface';
+import {  IProduct } from '../../interfaces/product-interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,6 +14,8 @@ import {
   ReactiveValidationModule,
   Validators,
 } from 'angular-reactive-validation';
+import { ICodigoTarifa } from '../../../taxes/interfaces/tax.interface';
+import { TaxesService } from '../../../taxes/taxes.service';
 
 @Component({
   selector: 'app-product-form',
@@ -32,6 +34,7 @@ export class ProductFormComponent implements OnInit{
   taxCodes: ICodigoTarifa[] = [];
   private activeRoute = inject(ActivatedRoute);
   private productService = inject(ProductsService);
+  private taxeService = inject(TaxesService);
   public router = inject(Router);
   private formBuilder = inject(FormBuilder);
 
@@ -39,7 +42,7 @@ export class ProductFormComponent implements OnInit{
   isEditMode: boolean = false;
 
   ngOnInit(): void {
-    this.productService.getAllTaxsCodes().subscribe({
+    this.taxeService.getAllTaxesCodes().subscribe({
       next: (taxCodes) => {
         this.taxCodes = taxCodes;
       },
