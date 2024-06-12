@@ -1,7 +1,8 @@
-import { Routes } from "@angular/router";
-import { InvoiceLayoutComponent } from "./layout/invoice-layout/invoice-layout.component";
-import { CreateInvoicePageComponent } from "./pages/create-invoice-page/create-invoice-page.component";
-import { ListInvoicePageComponent } from "./pages/list-invoice-page/list-invoice-page.component";
+import { Routes } from '@angular/router';
+import { InvoiceLayoutComponent } from './layout/invoice-layout/invoice-layout.component';
+import { CreateInvoicePageComponent } from './pages/create-invoice-page/create-invoice-page.component';
+import { ListInvoicePageComponent } from './pages/list-invoice-page/list-invoice-page.component';
+import { InvoiceTableTestPageComponent } from './pages/invoice-table-test-page/invoice-table-test-page.component';
 
 export const InoviceRoutes: Routes = [
   {
@@ -10,7 +11,8 @@ export const InoviceRoutes: Routes = [
     children: [
       { path: 'new-invoice', component: CreateInvoicePageComponent },
       { path: 'list', component: ListInvoicePageComponent },
-      { path: '', redirectTo: 'list', pathMatch: 'full' }
-    ]
-  }
-]
+      { path: 'test', component: InvoiceTableTestPageComponent },
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
+    ],
+  },
+];
