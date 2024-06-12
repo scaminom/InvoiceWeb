@@ -32,6 +32,11 @@ export const MainRoutes: Routes = [
           import('./establishments/establishments.routes').then((m) => m.EstablishmentsRoutes),
       },
       {
+        path: 'taxes',
+        loadChildren: () =>
+          import('./taxes/taxes.routes').then((m) => m.TaxesRoutes),
+      },
+      {
         path: '**',
         redirectTo: 'users',
         pathMatch: 'full',
