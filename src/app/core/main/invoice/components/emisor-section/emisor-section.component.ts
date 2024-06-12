@@ -19,44 +19,13 @@ import {
 })
 export class EmisorSectionComponent implements OnInit {
   private establishmentService = inject(EstablishmentsService);
-  private subscription!: Subscription;
-
-  searchInput = new FormControl<string>('');
   establishments!: Establecimiento[];
-  filteredEstablishments?: Observable<Establecimiento[]>;
-  selectedEstablishment?: Establecimiento;
 
   ngOnInit(): void {
-    this.subscription = this.establishmentService
+    this.establishmentService
       .getAllEstablishments()
       .subscribe((establishments) => {
         this.establishments = establishments;
-        this.setupFilter();
       });
-  }
-
-  setupFilter(): void {
-    this.filteredEstablishments = this.searchInput.valueChanges.pipe(
-      startWith(''),
-      map((value) => this.filterEstablishments(value || ''))
-    );
-  }
-
-  private filterEstablishments(query: string): Establecimiento[] {
-    return this.establishments.filter((establishment) =>
-      establishment.ruc.includes(query)
-    );
-  }
-
-  displayEstablishment(establishment: Establecimiento): string {
-    return establishment.ruc
-      ? establishment.ruc + ' - ' + establishment.razonSocial
-      : '';
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 }

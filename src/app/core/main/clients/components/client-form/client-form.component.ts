@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, viewChild } from '@angular/core';
+import { Component, OnInit, inject, output, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +11,8 @@ import {
 } from 'angular-reactive-validation';
 import { ClientsService } from '../../clients.service';
 import Swal from 'sweetalert2';
+import { MatDialogModule } from '@angular/material/dialog';
+import { IClient } from '../../interfaces/client-interface';
 @Component({
   selector: 'app-client-form',
   standalone: true,
@@ -30,6 +32,7 @@ export class ClientFormComponent implements OnInit {
   private clientService = inject(ClientsService);
   public router = inject(Router);
   private formBuilder = inject(FormBuilder);
+  formSubmitted = output<IClient>();
 
   clientForm!: FormGroup;
   isEditMode: boolean = false;
@@ -106,10 +109,19 @@ export class ClientFormComponent implements OnInit {
   onCreate(): void {
     if (this.clientForm.invalid) return;
     const client = this.clientForm.value;
+    const newClient = this.activeRoute.snapshot.params['newClient'];
+    const invoiceSection = this.activeRoute.snapshot.params['new-invoice'];
 
     this.clientService.createClient(client).subscribe({
       next: () => {
-        this.router.navigate(['/dashboard/clients']);
+        this.formSubmitted.emit(client);
+        if (newClient) {
+          this.router.navigate(['/dashboard/clients']);
+        }
+
+        if (invoiceSection) {
+          this.router.navigate(['.dashboard/invoice/new-invoice']);
+        }
         Swal.fire({
           title: 'Cliente creado',
           text: 'Cliente creado correctamente',
