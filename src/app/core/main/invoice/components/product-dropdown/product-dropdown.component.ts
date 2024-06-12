@@ -1,14 +1,12 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {
-  ICodigoTarifa,
-  IProduct,
-} from '../../../products/interfaces/product-interface';
-import { Observable, map, of, startWith, switchMap } from 'rxjs';
+import { IProduct } from '../../../products/interfaces/product-interface';
+import { Observable, map, of, startWith } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { ProductsService } from '../../../products/products.service';
 
 @Component({
   selector: 'app-product-dropdown',
@@ -23,51 +21,17 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './product-dropdown.component.html',
   styles: ``,
 })
-export class ProductDropdownComponent {
+export class ProductDropdownComponent implements OnInit {
   @Output() productSelected = new EventEmitter<IProduct>();
+  private productService = inject(ProductsService);
   productControl = new FormControl('');
-  private codigoTarifa1: ICodigoTarifa = {
-    id: 1,
-    codigo: '0',
-    descripcion: '0%',
-    porcentaje: 0,
-    activo: true,
-  };
-  products: IProduct[] = [
-    {
-      id: 1,
-      codigoPrincipal: 'P001',
-      descripcion: 'Product 1',
-      precioUnitario: 100,
-      urlImage: 'https://via.placeholder.com/150',
-      nombre: 'Product 1',
-      existencia: 10,
-      activo: true,
-      codigoTarifa: this.codigoTarifa1,
-    },
-    {
-      id: 2,
-      codigoPrincipal: 'P002',
-      descripcion: 'Product 2',
-      precioUnitario: 100,
-      urlImage: 'https://via.placeholder.com/150',
-      nombre: 'Product 2',
-      existencia: 10,
-      activo: true,
-      codigoTarifa: this.codigoTarifa1,
-    },
-    {
-      id: 3,
-      codigoPrincipal: 'P003',
-      descripcion: 'Product 3',
-      precioUnitario: 100,
-      urlImage: 'https://via.placeholder.com/150',
-      nombre: 'Product 3',
-      existencia: 10,
-      activo: true,
-      codigoTarifa: this.codigoTarifa1,
-    },
-  ];
+  products: IProduct[] = [];
+
+  ngOnInit(): void {
+    this.productService.getAllProducts().subscribe((products) => {
+      this.products = products;
+    });
+  }
 
   filteredProducts: Observable<IProduct[]> =
     this.productControl.valueChanges.pipe(
@@ -89,6 +53,8 @@ export class ProductDropdownComponent {
   }
 
   displayFn(product: IProduct): string {
-    return product && product.codigoPrincipal ? product.codigoPrincipal : '';
+    return product && product.codigoPrincipal
+      ? product.codigoPrincipal + ' ' + product.nombre
+      : '';
   }
 }

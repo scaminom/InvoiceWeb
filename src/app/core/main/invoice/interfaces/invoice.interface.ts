@@ -40,7 +40,6 @@ export interface Item {
   precioUnitario: number;
   producto: IProduct;
   impuesto: Impuesto[];
-  saved?: boolean;
 }
 
 export interface Impuesto {

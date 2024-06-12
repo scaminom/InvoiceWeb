@@ -13,7 +13,7 @@
   >
     @for(product of filteredProducts | async; track product.id) {
     <mat-option [value]="product">
-      {{ product.nombre }}
+      {{ product.codigoPrincipal }} - {{ product.nombre }}
     </mat-option>
 
     }
