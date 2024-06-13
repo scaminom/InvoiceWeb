@@ -13,29 +13,29 @@
 
 <div class="md:rounded-lg overflow-x-auto">
   <table class="table-auto w-full border-collapse">
-    <thead class="bg-gray-300">
+    <thead class="bg-gray-200 border-b">
       <tr>
-        <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Identificación</th>
-        <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Tipo de identificación</th>
-        <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Razon Social</th>
-        <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Dirección</th>
-        <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Correo</th>
-        <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Acciones</th>
+        <th class="text-sm font-medium uppercase text-gray-900 px-6 py-4 text-center">Identificación</th>
+        <th class="text-sm font-medium uppercase text-gray-900 px-6 py-4 text-center">Tipo de identificación</th>
+        <th class="text-sm font-medium uppercase text-gray-900 px-6 py-4 text-center">Razon Social</th>
+        <th class="text-sm font-medium uppercase text-gray-900 px-6 py-4 text-center">Dirección</th>
+        <th class="text-sm font-medium uppercase text-gray-900 px-6 py-4 text-center">Correo</th>
+        <th class="text-sm font-medium uppercase text-gray-900 px-6 py-4 text-center">Acciones</th>
       </tr>
     </thead>
     <tbody>
       @for(client of clients(); track client) {
       <tr class="even:bg-gray-100 odd:bg-white">
-        <td class="border px-4 py-2">{{ client.identificacionComprador }}</td>
-        <td class="border px-4 py-2">{{ client.tipoIdentificacion }}</td>
-        <td class="border px-4 py-2">{{ client.razonSocialComprador }}</td>
-        <td class="border px-4 py-2">{{ client.direccionComprador }}</td>
-        <td class="border px-4 py-2">{{ client.correo }}</td>
-        <td class="border px-4 py-2 ">
+        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">{{ client.identificacionComprador }}</td>
+        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">{{ client.tipoIdentificacion }}</td>
+        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">{{ client.razonSocialComprador }}</td>
+        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">{{ client.direccionComprador }}</td>
+        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">{{ client.correo }}</td>
+        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
          
           <div class="flex items-center gap-x-6 justify-center">
             <button
-              class="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none"
+              class="text-red-400 transition-colors duration-200 hover:text-red-800 focus:outline-none"
               (click)="onDeleteClient(client.id)"
             >
               <svg
@@ -55,7 +55,7 @@
             </button>
 
             <button
-              class="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none"
+              class="text-blue-400 transition-colors duration-200 hover:text-blue-800 focus:outline-none"
               [routerLink]="['/dashboard/clients/edit-client/', client.id]"
               matTooltip="Editar Cliente"
             >
