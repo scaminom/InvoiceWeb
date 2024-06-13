@@ -14,7 +14,7 @@ export const authGuard: CanActivateFn = (route, state): Observable<boolean> => {
       if (isAuthenticated) {
         return true;
       } else {
-        router.navigate(['/auth/login']);
+        // router.navigate(['/auth/login']);
         Swal.fire({
           title: 'Sesión inválida',
           text: 'Inicia sesión para continuar',
