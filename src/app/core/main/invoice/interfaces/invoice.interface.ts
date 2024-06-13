@@ -17,6 +17,7 @@ export interface InvoiceResponseInterface {
   items: ItemResponseInterface[];
   totalImpuestos: TaxResponseInterface[];
   pagos: PaymentResponseInterface[];
+  estado: string;
 }
 
 export interface EstablishmentResponseInterface {

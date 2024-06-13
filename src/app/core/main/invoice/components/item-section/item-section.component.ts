@@ -1,9 +1,18 @@
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  ViewChild,
+  computed,
+  effect,
+  inject,
+} from '@angular/core';
 import { ProductDropdownComponent } from '../product-dropdown/product-dropdown.component';
 import { ItemTableComponent } from '../item-table/item-table.component';
 import { IProduct } from '../../../products/interfaces/product-interface';
+import { TotalResponseInterface } from '../../interfaces/total-response.interface';
 import { InvoiceService } from '../../invoice.service';
-import { Item, ItemResponse } from '../../interfaces/invoice-bh.interface';
+import { Item } from '../../interfaces/invoice-bh.interface';
 
 @Component({
   selector: 'app-item-section',
@@ -12,11 +21,10 @@ import { Item, ItemResponse } from '../../interfaces/invoice-bh.interface';
   templateUrl: './item-section.component.html',
   styles: ``,
 })
-export class ItemSectionComponent implements OnInit {
+export class ItemSectionComponent {
   @ViewChild('invoiceTable') invoiceTable!: ItemTableComponent;
+  @Output() totalChanged = new EventEmitter<TotalResponseInterface>();
   private invoiceService = inject(InvoiceService);
-
-  ngOnInit(): void {}
 
   onProductSelected(product: IProduct) {
     this.invoiceTable.addItem(product);
@@ -25,4 +33,8 @@ export class ItemSectionComponent implements OnInit {
   onItemsChange(Iitems: Item[]): void {
     this.invoiceService.updateItems(Iitems);
   }
+
+  signalTotalChanged = effect(() =>
+    this.totalChanged.emit(this.invoiceTable.totalChanged())
+  );
 }

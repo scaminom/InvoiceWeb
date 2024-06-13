@@ -2,6 +2,7 @@
   <h2>Crear Factura</h2>
   <app-emisor-section />
   <app-client-section />
-  <app-item-section />
+  <app-item-section (totalChanged)="onTotalChanged($event)" />
+  <app-calculate-values [values]="total" />
   <button mat-button (click)="sendData()">Enviar Factura</button>
 </div>
