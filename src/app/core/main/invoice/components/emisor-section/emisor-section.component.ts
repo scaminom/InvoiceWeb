@@ -1,31 +1,40 @@
-import { Component, OnInit, inject, input } from '@angular/core';
-import { Establecimiento } from '../../interfaces/invoice.interface';
+import { Component, OnInit, inject } from '@angular/core';
 import { EstablishmentsService } from '../../../establishments/establishments.service';
-import { FilterPipe } from '../../pipes/filter.pipe';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Observable, Subscription, map, startWith } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
-import {
-  MatAutocompleteModule,
-  MatAutocompleteSelectedEvent,
-} from '@angular/material/autocomplete';
+import { InvoiceService } from '../../invoice.service';
+import { EstablishmentResponseInterface } from '../../interfaces/invoice.interface';
 
 @Component({
   selector: 'app-emisor-section',
   standalone: true,
-  imports: [FilterPipe, AsyncPipe, ReactiveFormsModule, MatAutocompleteModule],
+  imports: [],
   templateUrl: './emisor-section.component.html',
   styles: ``,
 })
 export class EmisorSectionComponent implements OnInit {
   private establishmentService = inject(EstablishmentsService);
-  establishments!: Establecimiento[];
+  private invoiceService = inject(InvoiceService);
+  establishments: EstablishmentResponseInterface[] = [];
+  selectedEstablishmentId: number | null = null;
 
   ngOnInit(): void {
     this.establishmentService
       .getAllEstablishments()
       .subscribe((establishments) => {
         this.establishments = establishments;
+        this.updateEstablishmentBaseCase();
       });
+  }
+
+  onEstablishmentChange(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    const selectedEstablishmentId = +target.value;
+    this.invoiceService.updateEstablecimiento(selectedEstablishmentId);
+  }
+
+  private updateEstablishmentBaseCase(): void {
+    if (this.establishments.length === 1) {
+      this.selectedEstablishmentId = this.establishments[0].id;
+      this.invoiceService.updateEstablecimiento(this.selectedEstablishmentId);
+    }
   }
 }

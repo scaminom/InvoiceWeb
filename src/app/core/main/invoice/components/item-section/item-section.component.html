@@ -10,7 +10,10 @@
       <app-product-dropdown
         (productSelected)="onProductSelected($event)"
       ></app-product-dropdown>
-      <app-item-table #invoiceTable></app-item-table>
+      <app-item-table
+        #invoiceTable
+        (itemsChange)="onItemsChange($event)"
+      ></app-item-table>
     </div>
   </div>
 </section>

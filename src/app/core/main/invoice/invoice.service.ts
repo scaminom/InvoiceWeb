@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Invoice } from './interfaces/invoice.interface';
+import { Invoice, Item } from './interfaces/invoice-bh.interface';
+import { InvoiceResponseInterface } from './interfaces/invoice.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,30 @@ export class InvoiceService {
     idEstablecimiento: 0,
   });
 
-  public getInvoices(): Observable<Invoice[]> {
-    return this.http.get<Invoice[]>(this.url);
+  public getInvoices(): Observable<InvoiceResponseInterface[]> {
+    return this.http.get<InvoiceResponseInterface[]>(this.url);
+  }
+
+  public getInvoice(): Observable<Invoice> {
+    return this.invoiceSubject.asObservable();
+  }
+
+  public updateInvoice(invoice: Invoice): void {
+    this.invoiceSubject.next(invoice);
+  }
+
+  public updateItems(items: Item[]): void {
+    const currentInvoice = this.invoiceSubject.getValue();
+    this.invoiceSubject.next({ ...currentInvoice, items });
+  }
+
+  public updateClient(idCliente: number): void {
+    const currentInvoice = this.invoiceSubject.getValue();
+    this.invoiceSubject.next({ ...currentInvoice, idCliente });
+  }
+
+  public updateEstablecimiento(idEstablecimiento: number): void {
+    const currentInvoice = this.invoiceSubject.getValue();
+    this.invoiceSubject.next({ ...currentInvoice, idEstablecimiento });
   }
 }

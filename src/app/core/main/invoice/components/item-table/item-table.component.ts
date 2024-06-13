@@ -5,6 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { IProduct } from '../../../products/interfaces/product-interface';
 import { CurrencyPipe } from '@angular/common';
 import { ItemResponse } from '../../interfaces/item-response.interface';
+import { Item } from '../../interfaces/invoice-bh.interface';
 
 @Component({
   selector: 'app-item-table',
@@ -30,7 +31,7 @@ export class ItemTableComponent {
   ];
 
   dataSource: ItemResponse[] = [];
-  // @Output() items!: EventEmitter<ItemResponse[]>;
+  @Output() itemsChange = new EventEmitter<Item[]>();
 
   public addItem(product: IProduct) {
     const newItem: ItemResponse = {
@@ -41,7 +42,7 @@ export class ItemTableComponent {
     };
     this.dataSource.push(newItem);
     this.dataSource = [...this.dataSource];
-    // this.items.emit(this.dataSource);
+    this.itemsChange.emit(this.transformedDataSource());
   }
 
   saveItem(item: ItemResponse) {
@@ -49,6 +50,7 @@ export class ItemTableComponent {
     if (index !== -1) {
       this.dataSource[index] = item;
       this.dataSource = [...this.dataSource];
+      this.itemsChange.emit(this.transformedDataSource());
     }
   }
 
@@ -57,18 +59,23 @@ export class ItemTableComponent {
     if (index !== -1) {
       this.dataSource.splice(index, 1);
       this.dataSource = [...this.dataSource];
+      this.itemsChange.emit(this.transformedDataSource());
     }
   }
 
-  onQuantityChange(item: ItemResponse) {
+  onQuantityChange(item: ItemResponse): void {
     this.saveItem(item);
   }
 
-  onDiscountChange(item: ItemResponse) {
+  onDiscountChange(item: ItemResponse): void {
     this.saveItem(item);
   }
 
-  sendData() {
-    console.log(this.dataSource);
+  transformedDataSource(): Item[] {
+    return this.dataSource.map((item) => ({
+      cantidad: item.cantidad,
+      descuento: item.descuento,
+      idProducto: item.product.id,
+    }));
   }
 }

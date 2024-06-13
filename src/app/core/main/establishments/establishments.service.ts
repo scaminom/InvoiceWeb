@@ -46,7 +46,7 @@ export class EstablishmentsService {
       );
   }
 
-  public deleteEstablishment(id: string): Observable<IEstablishment> {
+  public deleteEstablishment(id: number): Observable<IEstablishment> {
     return this.http.delete<IEstablishment>(`${this.url}/${id}`).pipe(
       catchError((error) => {
         let errorMessage = Object.values(error.error).join('<br>');

@@ -7,6 +7,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AsyncPipe } from '@angular/common';
 import { ClientFormComponent } from '../../../clients/components/client-form/client-form.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { InvoiceService } from '../../invoice.service';
 
 @Component({
   selector: 'app-client-section',
@@ -23,9 +24,10 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 })
 export class ClientSectionComponent implements OnInit {
   clients!: IClient[];
-  private clientService = inject(ClientsService);
   filteredClients?: Observable<IClient[]>;
   searchInput = new FormControl<string>('');
+  private clientService = inject(ClientsService);
+  private invoiceService = inject(InvoiceService);
 
   constructor(public dialog: MatDialog) {}
 
@@ -59,6 +61,11 @@ export class ClientSectionComponent implements OnInit {
         dialogRef.close();
       }
     );
+  }
+
+  onClientSelected(event: any): void {
+    const client = event.option.value as IClient;
+    this.invoiceService.updateClient(client.id);
   }
 
   private filter(value: string): IClient[] {

@@ -109,13 +109,14 @@ export class ClientFormComponent implements OnInit {
   onCreate(): void {
     if (this.clientForm.invalid) return;
     const client = this.clientForm.value;
-    const newClient = this.activeRoute.snapshot.params['newClient'];
+    const newClient = this.activeRoute.snapshot.params['new-client'];
     const invoiceSection = this.activeRoute.snapshot.params['new-invoice'];
 
     this.clientService.createClient(client).subscribe({
       next: () => {
         this.formSubmitted.emit(client);
         if (newClient) {
+          console.log('new client');
           this.router.navigate(['/dashboard/clients']);
         }
 

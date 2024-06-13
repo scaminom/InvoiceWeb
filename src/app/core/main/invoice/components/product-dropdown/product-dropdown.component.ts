@@ -4,7 +4,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { IProduct } from '../../../products/interfaces/product-interface';
-import { Observable, map, of, startWith } from 'rxjs';
+import { Observable, map, startWith } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { ProductsService } from '../../../products/products.service';
 

@@ -1,7 +1,7 @@
 import { IClient } from '../../clients/interfaces/client-interface';
 import { IProduct } from '../../products/interfaces/product-interface';
 
-export interface Invoice {
+export interface InvoiceResponseInterface {
   id: number;
   fechaEmision: Date;
   codDoc: string;
@@ -12,15 +12,15 @@ export interface Invoice {
   propina: number;
   importeTotal: number;
   moneda: string;
-  establecimiento: Establecimiento;
+  establecimiento: EstablishmentResponseInterface;
   cliente: IClient;
-  items: Item[];
-  totalImpuestos: Impuesto[];
-  pagos: Pago[];
+  items: ItemResponseInterface[];
+  totalImpuestos: TaxResponseInterface[];
+  pagos: PaymentResponseInterface[];
 }
 
-export interface Establecimiento {
-  id: string;
+export interface EstablishmentResponseInterface {
+  id: number;
   ruc: string;
   razonSocial: string;
   dirMatriz: string;
@@ -32,17 +32,17 @@ export interface Establecimiento {
   activo: boolean;
 }
 
-export interface Item {
+export interface ItemResponseInterface {
   id: number;
   cantidad: number;
   descuento: number;
   precioTotalSinImpuesto: number;
   precioUnitario: number;
   producto: IProduct;
-  impuesto: Impuesto[];
+  impuesto: TaxResponseInterface[];
 }
 
-export interface Impuesto {
+export interface TaxResponseInterface {
   id: number;
   codigo: string;
   codigoPorcentaje: string;
@@ -51,7 +51,7 @@ export interface Impuesto {
   valor: number;
 }
 
-export interface Pago {
+export interface PaymentResponseInterface {
   id: number;
   formaPago: string;
   total: number;
