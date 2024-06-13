@@ -14,29 +14,29 @@
   
   <div class="overflow-x-auto md:rounded-lg">
     <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-300">
+      <thead class="bg-gray-200">
         <tr>
           <th
             scope="col"
-            class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500"
+            class="text-sm font-medium uppercase text-gray-500 px-3 py-2 text-center"
           >
             <span>Codigo</span>
           </th>
           <th
             scope="col"
-            class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500"
+            class="text-sm font-medium uppercase text-gray-500 px-3 py-2 text-center"
           >
             <span>Descripción</span>
           </th>
           <th
             scope="col"
-            class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500"
+            class="text-sm font-medium uppercase text-gray-500 px-3 py-2 text-center"
           >
             <span>Porcentaje</span>
           </th>
           <th
             scope="col"
-            class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500"
+            class="text-sm font-medium uppercase text-gray-500 px-3 py-2 text-center"
           >
             <span>Acciones </span>
           </th>
@@ -45,32 +45,32 @@
       <tbody class="bg-white divide-y divide-gray-200">
         @for(tax of taxes(); track tax) {
         <tr class="even:bg-gray-100 odd:bg-white">
-          <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
+          <td class="px-3 py-2 text-sm font-medium whitespace-nowrap">
             <div>
-              <p class="text-sm font-normal text-gray-400">
+              <p class="text-sm text-gray-500 font-light px-3 py-2 whitespace-nowrap text-center">
                 {{ tax.codigo }}
               </p>
             </div>
           </td>
-          <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
+          <td class="px-3 py-2 text-sm font-medium whitespace-nowrap">
             <div>
-              <p class="text-sm font-normal text-gray-400">
+              <p class="text-sm text-gray-500 font-light px-3 py-2 whitespace-nowrap text-center">
                 {{ tax.descripcion }}
               </p>
             </div>
           </td>
-          <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
+          <td class="px-3 py-2 text-sm font-medium whitespace-nowrap">
             <div>
-              <p class="text-sm font-normal text-gray-400">
+              <p class="text-sm text-gray-500 font-light px-3 py-2 whitespace-nowrap text-center">
                 {{ tax.porcentaje}}
               </p>
             </div>
           </td>
       
-          <td class="px-6 py-4 text-sm whitespace-nowrap">
-            <div class="flex items-center gap-x-6">
+          <td class="px-3 py-2 text-sm whitespace-nowrap">
+            <div class="flex items-center gap-x-6 justify-center">
               <button
-                class="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none"
+                class="text-red-400 transition-colors duration-200 hover:text-red-800 focus:outline-none"
                 (click)="onDeleteTax(tax.id)"
               >
                 <svg
@@ -90,7 +90,7 @@
               </button>
   
               <button
-                class="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none"
+                class="text-blue-400 transition-colors duration-200 hover:text-blue-800 focus:outline-none"
                 [routerLink]="['/dashboard/taxes/edit/', tax.id]"
               >
                 <svg
