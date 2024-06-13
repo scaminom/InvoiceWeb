@@ -13,35 +13,35 @@
   
   <div class="md:rounded-lg overflow-x-auto">
     <table class="table-auto w-full border-collapse">
-      <thead class="bg-gray-300">
+      <thead class="bg-gray-200 border-b">
         <tr>
-          <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">RUC</th>
-          <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Número de establecimiento</th>
-          <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Razon Social</th>
-          <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Punto de Emisión</th>
-          <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Ambiente</th>
-          <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Obligado a contablididad</th>
-          <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Dirección del establecimiento</th>
-          <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Dirección matriz</th>
-          <th class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500">Acciones</th>
+          <th class="text-sm font-medium uppercase text-gray-900 px-4 py-4 text-center">RUC</th>
+          <th class="text-sm font-medium uppercase text-gray-900 px-4 py-4 text-center">Número de establecimiento</th>
+          <th class="text-sm font-medium uppercase text-gray-900 px-4 py-4 text-center">Razon Social</th>
+          <th class="text-sm font-medium uppercase text-gray-900 px-4 py-4 text-center">Punto de Emisión</th>
+          <th class="text-sm font-medium uppercase text-gray-900 px-4 py-4 text-center">Ambiente</th>
+          <th class="text-sm font-medium uppercase text-gray-900 px-4 py-4 text-center">Obligado a contablididad</th>
+          <th class="text-sm font-medium uppercase text-gray-900 px-4 py-4 text-center">Dirección del establecimiento</th>
+          <th class="text-sm font-medium uppercase text-gray-900 px-4 py-4 text-center">Dirección matriz</th>
+          <th class="text-sm font-medium uppercase text-gray-900 px-4 py-4 text-center">Acciones</th>
         </tr>
       </thead>
       <tbody>
         @for(establishment of establishments(); track establishment) {
         <tr class="even:bg-gray-100 odd:bg-white">
-          <td class="border px-4 py-2">{{ establishment.ruc }}</td>
-          <td class="border px-4 py-2">{{ establishment.estab }}</td>
-          <td class="border px-4 py-2">{{ establishment.razonSocial }}</td>
-          <td class="border px-4 py-2">{{ establishment.ptoEmi }}</td>
-          <td class="border px-4 py-2">{{ establishment.ambiente }}</td>
-          <td class="border px-4 py-2">{{ establishment.obligadoContabilidad }}</td>
-          <td class="border px-4 py-2">{{ establishment.dirEstablecimiento }}</td>
-          <td class="border px-4 py-2">{{ establishment.dirMatriz }}</td>
-          <td class="border px-4 py-2 ">
+          <td class="text-sm text-gray-900 font-light px-4 py-4 whitespace-nowrap text-center">{{ establishment.ruc }}</td>
+          <td class="text-sm text-gray-900 font-light px-4 py-4 whitespace-nowrap text-center">{{ establishment.estab }}</td>
+          <td class="text-sm text-gray-900 font-light px-4 py-4 whitespace-nowrap text-center">{{ establishment.razonSocial }}</td>
+          <td class="text-sm text-gray-900 font-light px-4 py-4 whitespace-nowrap text-center">{{ establishment.ptoEmi }}</td>
+          <td class="text-sm text-gray-900 font-light px-4 py-4 whitespace-nowrap text-center">{{ establishment.ambiente }}</td>
+          <td class="text-sm text-gray-900 font-light px-4 py-4 whitespace-nowrap text-center">{{ establishment.obligadoContabilidad }}</td>
+          <td class="text-sm text-gray-900 font-light px-4 py-4 whitespace-nowrap text-center">{{ establishment.dirEstablecimiento }}</td>
+          <td class="text-sm text-gray-900 font-light px-4 py-4 whitespace-nowrap text-center">{{ establishment.dirMatriz }}</td>
+          <td class="text-sm text-gray-900 font-light px-4 py-4 whitespace-nowrap text-center">
            
             <div class="flex items-center gap-x-6 justify-center">
               <button
-                class="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none"
+                class="text-red-400 transition-colors duration-200 hover:text-red-800 focus:outline-none"
                 (click)="onDeleteEstablishment(establishment.id)"
               >
                 <svg
@@ -61,7 +61,7 @@
               </button>
   
               <button
-                class="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none"
+                class="text-blue-400 transition-colors duration-200 hover:text-blue-800 focus:outline-none"
                 [routerLink]="['/dashboard/establishments/edit/', establishment.id]"
                 matTooltip="Editar Cliente"
               >
