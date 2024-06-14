@@ -1,20 +1,13 @@
-<div
-  class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
->
-  <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
-    <div class="p-6 space-y-3 md:space-y-6 sm:p-8">
-      <h1
-        class="text-xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-2xl"
-      >
+<div class="flex items-center justify-center min-h-screen bg-gradient-to-r from-greenCustom to-blue">
+  <div class="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
+    <!-- Lado izquierdo -->
+    <div class="flex flex-col justify-center p-8 md:p-14 md:w-3/5">
+      <h1 class="text-xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-2xl">
         Ingresa a tu cuenta
       </h1>
       <form class="space-y-4 md:space-y-6" [formGroup]="loginForm">
-        <div>
-          <label
-            for="email"
-            class="block mb-2 text-sm font-medium text-gray-900"
-            >Tu usuario</label
-          >
+        <div class="py-4">
+          <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Tu usuario</label>
           <input
             type="text"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
@@ -25,12 +18,8 @@
             <arv-validation-messages for="username"></arv-validation-messages>
           </mat-error>
         </div>
-        <div>
-          <label
-            for="password"
-            class="block mb-2 text-sm font-medium text-gray-900"
-            >Contraseña</label
-          >
+        <div class="py-4">
+          <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Contraseña</label>
           <input
             type="password"
             placeholder="••••••••"
@@ -46,9 +35,21 @@
           class="w-full text-white bg-teal-800 hover:bg-teal-900 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           (click)="login()"
         >
-          Sign in
+          Iniciar sesión
         </button>
       </form>
     </div>
+    
+    <!-- Lado derecho -->
+    <div class="relative bg-teal-800">
+      <img
+        src="../../../../../assets/images/Invoice-amico.png"
+        alt="img"
+        class="w-[600px] h-full hidden rounded-r-2xl md:block object-cover"
+      />
+      <!-- text on image  -->
+     
+        
+      </div>
   </div>
 </div>
