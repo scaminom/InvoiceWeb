@@ -1,18 +1,16 @@
-import { Injectable, computed, signal } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Invoice } from './interfaces/invoice.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class InvoiceService {
-  private total = signal(10)
+  private http = inject(HttpClient);
+  private readonly url = 'http://localhost:8080/factura';
 
-  _total = computed(this.total)
-
-  public increase(): void {
-    this.total.update(value => value + 1)
-  }
-
-  public decrease(): void {
-    this.total.update(value => value - 1)
+  public getInvoices(): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(this.url);
   }
 }

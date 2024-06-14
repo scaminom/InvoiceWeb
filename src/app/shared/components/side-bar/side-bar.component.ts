@@ -9,4 +9,4 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './side-bar.component.html',
   styles: ``,
 })
-export class SideBarComponent {}
+export class SideBarComponent { }
