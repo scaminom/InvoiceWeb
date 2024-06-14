@@ -3,10 +3,29 @@
     class="absolute top-0 left-0 transform -translate-y-1/2 bg-zinc-200 px-1 text-black-500"
     >Emisor</span
   >
-  <div>
-    <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900"
-      >Ruc</label
-    >
-    {{ emisor().ruc }}
+  <div class="container mx-auto p-4">
+    <div class="mb-4">
+      <label for="search" class="block text-gray-700 text-sm font-bold mb-2"
+        >Buscar Establecimiento:</label
+      >
+      <input
+        type="text"
+        [formControl]="searchInput"
+        [matAutocomplete]="auto"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        placeholder="Buscar por ruc..."
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="displayEstablishment"
+      >
+        @for(establishment of filteredEstablishments | async; track
+        establishment.id) {
+        <mat-option [value]="establishment">
+          {{ establishment.razonSocial }} - {{ establishment.ruc }}
+        </mat-option>
+        }
+      </mat-autocomplete>
+    </div>
   </div>
 </section>
