@@ -8,7 +8,6 @@ import { ItemResponse } from '../../interfaces/item-response.interface';
 import { Item } from '../../interfaces/invoice-bh.interface';
 import { TotalResponseInterface } from '../../interfaces/total-response.interface';
 import { InvoiceService } from '../../invoice.service';
-import { map } from 'rxjs';
 
 @Component({
   selector: 'app-item-table',
@@ -41,7 +40,6 @@ export class ItemTableComponent {
     propina: 0,
     importeTotal: 0,
   });
-
   private invoiceService = inject(InvoiceService);
 
   public addItem(product: IProduct) {
@@ -69,7 +67,11 @@ export class ItemTableComponent {
 
   deleteItem(item: ItemResponse) {
     const index = this.dataSource.findIndex((i) => i.id === item.id);
-    if (index !== -1) {
+    if (
+      item.cantidad &&
+      item.descuento !== null &&
+      item.descuento !== undefined
+    ) {
       this.dataSource.splice(index, 1);
       this.dataSource = [...this.dataSource];
       this.itemsChange.emit(this.transformedDataSource());
@@ -78,11 +80,15 @@ export class ItemTableComponent {
   }
 
   onQuantityChange(item: ItemResponse): void {
-    this.saveItem(item);
+    if (item.cantidad > 0) {
+      this.saveItem(item);
+    }
   }
 
   onDiscountChange(item: ItemResponse): void {
-    this.saveItem(item);
+    if (item.descuento > 0) {
+      this.saveItem(item);
+    }
   }
 
   private recalculateTotals(): void {

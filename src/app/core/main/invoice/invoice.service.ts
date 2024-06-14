@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, debounceTime, map } from 'rxjs';
 import { Invoice, Item } from './interfaces/invoice-bh.interface';
 import { InvoiceResponseInterface } from './interfaces/invoice.interface';
 import { TotalResponseInterface } from './interfaces/total-response.interface';
@@ -36,6 +36,13 @@ export class InvoiceService {
           return this.transformValues(response);
         })
       );
+  }
+
+  public sendInvoice(invoice: Invoice): Observable<InvoiceResponseInterface> {
+    return this.http.post<InvoiceResponseInterface>(
+      `${this.url}/create_autorize`,
+      invoice
+    );
   }
 
   public getInvoice(): Observable<Invoice> {

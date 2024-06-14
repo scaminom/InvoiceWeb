@@ -33,7 +33,7 @@ export class CreateInvoicePageComponent implements OnInit {
 
   sendData(): void {
     if (this.invoice) {
-      this.invoiceService.createInvoice(this.invoice).subscribe({
+      this.invoiceService.sendInvoice(this.invoice).subscribe({
         next: (response) => {
           console.log('Response', response);
         },
