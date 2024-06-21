@@ -9,7 +9,7 @@ import { CreateUser } from './interfaces/create-user.interface';
   providedIn: 'root',
 })
 export class UsersService {
-  private readonly baseUrl = 'http://localhost:8080/users';
+  private readonly baseUrl = 'http://ec2-3-128-226-4.us-east-2.compute.amazonaws.com:8080/users';
 
   private http = inject(HttpClient);
 
@@ -26,20 +26,12 @@ export class UsersService {
   }
 
   public updateUser(id: number, user: UpdateUser): Observable<void> {
-    return this.http.put<void>(`${this.baseUrl}/${id}`, user).pipe(
-      catchError((error) => {
-        let errorMessages = Object.values(error.error).join('<br>');
-        return throwError(() => new Error(errorMessages));
-      })
+    return this.http.put<void>(`${this.baseUrl}/${id}`, user
     );
   }
 
   public createUser(user: CreateUser): Observable<void> {
-    return this.http.post<void>(this.baseUrl, user).pipe(
-      catchError((error) => {
-        let errorMessages = Object.values(error.error).join('<br>');
-        return throwError(() => new Error(errorMessages));
-      })
+    return this.http.post<void>(this.baseUrl, user
     );
   }
 

@@ -2,15 +2,15 @@
   <div>
     <label
       for="identificacionComprador"
-      class="block mb-2 text-sm font-medium text-gray-900"
+      class="block mb-2 text-sm font-medium text-gray-900 ml-96"
       >Identificación</label
     >
     <input
       type="text"
-      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto"
       formControlName="identificacionComprador"
     />
-    <mat-error class="flex mt-1 text-red-600">
+    <mat-error class="flex mt-1 text-red-600 ml-96">
       <arv-validation-messages
         for="identificacionComprador"
       ></arv-validation-messages>
@@ -18,19 +18,19 @@
   </div>
 
   <div class="mb-4">
-    <label class="block mb-2 text-sm font-medium text-gray-900"
+    <label class="block mb-2 text-sm font-medium text-gray-900 ml-96"
       >Tipo de identificación:</label
     >
     <mat-radio-group
       aria-label="Tipo de identificacion"
-      class="bg-white flex flex-col rounded-lg p-2 mb-1"
+      class="bg-white flex flex-col rounded-lg p-2 mb-1 ml-96"
       formControlName="tipoIdentificacion"
       color="primary"
     >
       <mat-radio-button value="CEDULA" checked="true">CÉDULA</mat-radio-button>
       <mat-radio-button value="RUC">RUC</mat-radio-button>
     </mat-radio-group>
-    <mat-error class="flex mt-1 text-red-600">
+    <mat-error class="flex mt-1 text-red-600 ml-96">
       <arv-validation-messages
         for="tipoIdentificacion"
       ></arv-validation-messages>
@@ -40,15 +40,15 @@
   <div>
     <label
       for="razonSocialComprador"
-      class="block mb-2 text-sm font-medium text-gray-900"
+      class="block mb-2 text-sm font-medium text-gray-900 ml-96"
       >Razón Social</label
     >
     <input
       type="text"
-      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto"
       formControlName="razonSocialComprador"
     />
-    <mat-error class="flex mt-1 text-red-600">
+    <mat-error class="flex mt-1 text-red-600 ml-96">
       <arv-validation-messages
         for="razonSocialComprador"
       ></arv-validation-messages>
@@ -58,15 +58,15 @@
   <div>
     <label
       for="direccionComprador"
-      class="block mb-2 text-sm font-medium text-gray-900"
+      class="block mb-2 text-sm font-medium text-gray-900 ml-96"
       >Dirección</label
     >
     <input
       type="text"
-      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto"
       formControlName="direccionComprador"
     />
-    <mat-error class="flex mt-1 text-red-600">
+    <mat-error class="flex mt-1 text-red-600 ml-96">
       <arv-validation-messages
         for="direccionComprador"
       ></arv-validation-messages>
@@ -74,30 +74,30 @@
   </div>
 
   <div>
-    <label for="correo" class="block mb-2 text-sm font-medium text-gray-900"
+    <label for="correo" class="block mb-2 text-sm font-medium text-gray-900 ml-96"
       >Correo</label
     >
     <input
       type="text"
-      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto"
       placeholder="name@company.com"
       formControlName="correo"
     />
-    <mat-error class="flex mt-1 text-red-600">
+    <mat-error class="flex mt-1 text-red-600 ml-96">
       <arv-validation-messages for="correo"></arv-validation-messages>
     </mat-error>
   </div>
 
   @if(isEditMode){
   <button
-    class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 py-2 px-5 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out"
+    class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 py-2 px-5 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out ml-96"
     (click)="onUpdate()"
   >
     Actualizar
   </button>
   } @else {
   <button
-    class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 py-2 px-5 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out"
+    class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 py-2 px-5 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out ml-96"
     (click)="onCreate()"
   >
     Crear

@@ -11,6 +11,7 @@ import {
 } from 'angular-reactive-validation';
 import { ClientsService } from '../../clients.service';
 import Swal from 'sweetalert2';
+import { ErrorMessage } from '../../../../../shared/interface/error-message.interface';
 @Component({
   selector: 'app-client-form',
   standalone: true,
@@ -100,6 +101,18 @@ export class ClientFormComponent implements OnInit {
           icon: 'success',
         });
       },
+      error: (infoError) => {
+        console.log(infoError)
+        const errores = infoError.error as ErrorMessage;
+        const formattedDescription = errores.description.map(line =>`<p>${line}</p>`).join('');
+        Swal.fire({
+          title: errores.message,
+          icon: 'error',
+          html: formattedDescription,
+        });
+
+      }
+      
     });
   }
 
@@ -116,6 +129,17 @@ export class ClientFormComponent implements OnInit {
           icon: 'success',
         });
       },
+      error: (infoError) => {
+        console.log(infoError)
+        const errores = infoError.error as ErrorMessage;
+        const formattedDescription = errores.description.map(line =>`<p>${line}</p>`).join('');
+        Swal.fire({
+          title: errores.message,
+          icon: 'error',
+          html: formattedDescription,
+        });
+
+      }
     });
   }
 }

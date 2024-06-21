@@ -1,77 +1,71 @@
-<form [formGroup]="productForm" class="space-y-7">
+<form [formGroup]="productForm" class="space-y-7" (ngSubmit)="onSubmit()">
     <div>
-        <label for="codigoPrincipal" class="block mb-2 text-sm font-medium text-gray-900">Codigo Principal</label>
-        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="codigoPrincipal" />
-        <mat-error class="flex mt-1 text-red-600">
+        <label for="codigoPrincipal" class="block mb-2 text-sm font-medium text-gray-900 ml-96">Codigo Principal</label>
+        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto" formControlName="codigoPrincipal" />
+        <mat-error class="flex mt-1 text-red-600 ml-96">
           <arv-validation-messages for="codigoPrincipal"></arv-validation-messages>
         </mat-error>
       </div>
 
     <div>
-      <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre del Producto</label>
-      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="nombre" />
-      <mat-error class="flex mt-1 text-red-600">
+      <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 ml-96">Nombre del Producto</label>
+      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto" formControlName="nombre" />
+      <mat-error class="flex mt-1 text-red-600 ml-96">
         <arv-validation-messages for="nombre"></arv-validation-messages>
       </mat-error>
     </div>
   
     <div>
-      <label for="descripcion" class="block mb-2 text-sm font-medium text-gray-900">Descripción del Producto</label>
-      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="descripcion" />
-      <mat-error class="flex mt-1 text-red-600">
+      <label for="descripcion" class="block mb-2 text-sm font-medium text-gray-900 ml-96">Descripción del Producto</label>
+      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto" formControlName="descripcion" />
+      <mat-error class="flex mt-1 text-red-600 ml-96">
         <arv-validation-messages for="descripcion"></arv-validation-messages>
       </mat-error>
     </div>
   
     <div>
-      <label for="urlImage" class="block mb-2 text-sm font-medium text-gray-900">URL de la Imagen</label>
-      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="urlImage" />
+      <label for="imagen" class="block mb-2 text-sm font-medium text-gray-900 ml-96">Imagen</label>
+      <input
+        type="file"
+        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto"
+        (change)="onFileSelected($event)"
+      />
       <mat-error class="flex mt-1 text-red-600">
-        <arv-validation-messages for="urlImage"></arv-validation-messages>
       </mat-error>
     </div>
   
     <div>
-      <label for="existencia" class="block mb-2 text-sm font-medium text-gray-900">Existencia</label>
-      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="existencia" />
-      <mat-error class="flex mt-1 text-red-600">
+      <label for="existencia" class="block mb-2 text-sm font-medium text-gray-900 ml-96">Existencia</label>
+      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto" formControlName="existencia" />
+      <mat-error class="flex mt-1 text-red-600 ml-96">
         <arv-validation-messages for="existencia"></arv-validation-messages>
       </mat-error>
     </div>
   
     <div>
-      <label for="precioUnitario" class="block mb-2 text-sm font-medium text-gray-900">Precio Unitario</label>
-      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" formControlName="precioUnitario" />
-      <mat-error class="flex mt-1 text-red-600">
+      <label for="precioUnitario" class="block mb-2 text-sm font-medium text-gray-900 ml-96">Precio Unitario</label>
+      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto" formControlName="precioUnitario" />
+      <mat-error class="flex mt-1 text-red-600 ml-96">
         <arv-validation-messages for="precioUnitario"></arv-validation-messages>
       </mat-error>
     </div>
   
     <div>
-      <label for="codigoTarifa" class="block mb-2 text-sm font-medium text-gray-900">Tarifa</label>
-      <select formControlName="codigoTarifa" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+      <label for="codigoTarifa" class="block mb-2 text-sm font-medium text-gray-900 ml-96">Tarifa</label>
+      <select formControlName="codigoTarifa" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto">
           <option *ngFor="let taxCode of taxCodes" [value]="taxCode.id">{{ taxCode.porcentaje }}</option>
       </select>
-      <mat-error class="flex mt-1 text-red-600">
+      <mat-error class="flex mt-1 text-red-600 ml-96">
           <arv-validation-messages for="codigoTarifa"></arv-validation-messages>
       </mat-error>
   </div>
 
   
-    @if(isEditMode){
-        <button
-          class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 py-2 px-5 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out"
-          (click)="onUpdate()"
-        >
-          Actualizar
-        </button>
-        } @else {
-        <button
-          class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 py-2 px-5 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out"
-          (click)="onCreate()"
-        >
-          Crear
-        </button>
-        }
-  </form>
+  <button
+  class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 py-2 px-5 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out ml-96"
+  type="submit"
+>
+  {{ isEditMode ? 'Actualizar' : 'Crear' }}
+</button>   
+</form>
   

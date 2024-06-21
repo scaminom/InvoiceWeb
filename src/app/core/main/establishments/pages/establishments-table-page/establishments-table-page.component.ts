@@ -3,6 +3,7 @@ import { IEstablishment} from '../../interfaces/establishment.iterface';
 import { EstablishmentsService } from '../../establishments.service';
 import { needConfirmation } from '../../../../../shared/components/confirm-dialog/decorators/confirm-dialog.decorator';
 import { EstablishmentTableComponent } from '../../components/establishments-table-component/establishments-table-component.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-establishment-table-page',
@@ -22,15 +23,21 @@ export class EstablishmentTablePageComponent implements OnInit {
     });
   }
 
-  @needConfirmation({
-    title: 'Eliminar Establecimiento',
-    message: '¿Estás seguro de eliminar este establecimiento?',
-  })
-  deleteEstablishment(id: string): void {
-    
-    this.establishmentService.deleteEstablishment(id).subscribe(() => {
-        this.establishments = this.establishments.filter((esta) => esta.id !== id);
-      },
-    );
+   deleteEstablishment(id: string): void {
+    Swal.fire({
+      title: "¿Estás seguro de eliminar esto?",
+      text: "Los cambios serán irreversibles",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, elimínalo"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.establishmentService.deleteEstablishment(id).subscribe(() => {
+          this.establishments = this.establishments.filter((esta) => esta.id !== id);
+        });
+      }
+    });
   }
 }

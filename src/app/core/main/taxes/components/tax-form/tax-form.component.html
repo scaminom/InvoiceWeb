@@ -1,42 +1,42 @@
 <form [formGroup]="taxForm" class="space-y-5">
     <div>
-      <label for="codigo" class="block mb-2 text-sm font-medium text-gray-900"
+      <label for="codigo" class="block mb-2 text-sm font-medium text-gray-900 ml-96"
         >Código</label
       >
       <input
         type="text"
-        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto"
         formControlName="codigo"
       />
-      <mat-error class="flex mt-1 text-red-600">
+      <mat-error class="flex mt-1 text-red-600 ml-96">
         <arv-validation-messages for="codigo"></arv-validation-messages>
       </mat-error>
     </div>
   
     <div>
-      <label for="descripcion" class="block mb-2 text-sm font-medium text-gray-900"
+      <label for="descripcion" class="block mb-2 text-sm font-medium text-gray-900 ml-96"
         >Descripción</label
       >
       <input
         type="text"
-        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto"
         formControlName="descripcion"
       />
-      <mat-error class="flex mt-1 text-red-600">
+      <mat-error class="flex mt-1 text-red-600 ml-96">
         <arv-validation-messages for="descripcion"></arv-validation-messages>
       </mat-error>
     </div>
   
     <div>
-      <label for="porcentaje" class="block mb-2 text-sm font-medium text-gray-900"
+      <label for="porcentaje" class="block mb-2 text-sm font-medium text-gray-900 ml-96"
         >Porcentaje</label
       >
       <input
         type="text"
-        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-5/12 p-2.5 mx-auto"
         formControlName="porcentaje"
       />
-      <mat-error class="flex mt-1 text-red-600">
+      <mat-error class="flex mt-1 text-red-600 ml-96">
         <arv-validation-messages for="porcentaje"></arv-validation-messages>
       </mat-error>
     </div>
@@ -54,7 +54,7 @@
       (click)="onCreate()"
     >
       Crear
-    </button>
+</button>
     }
   </form>
   

@@ -3,6 +3,7 @@ import { ClientTableComponent } from '../../components/client-table/client-table
 import { IClient } from '../../interfaces/client-interface';
 import { ClientsService } from '../../clients.service';
 import { needConfirmation } from '../../../../../shared/components/confirm-dialog/decorators/confirm-dialog.decorator';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-client-table-page',
@@ -22,13 +23,22 @@ export class ClientTablePageComponent implements OnInit {
     });
   }
 
-  @needConfirmation({
-    title: 'Eliminar Cliente',
-    message: '¿Estás seguro de eliminar este cliente?',
-  })
   deleteClient(id: number): void {
-    this.clientService.deleteClient(id).subscribe(() => {
-      this.clients = this.clients.filter((client) => client.id !== id);
+    Swal.fire({
+      title: "¿Estás seguro de eliminar esto?",
+      text: "Los cambios serán irreversibles",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, elimínalo"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.clientService.deleteClient(id).subscribe(() => {
+          this.clients = this.clients.filter((client) => client.id !== id);
+        });
+      }
     });
   }
+  
 }

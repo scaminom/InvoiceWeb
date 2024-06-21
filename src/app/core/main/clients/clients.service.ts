@@ -8,7 +8,7 @@ import { CreateClient } from './interfaces/create-client.interface';
   providedIn: 'root',
 })
 export class ClientsService {
-  private readonly baseUrl = 'http://localhost:8080/clients';
+  private readonly baseUrl = 'http://ec2-3-128-226-4.us-east-2.compute.amazonaws.com:8080/clients';
 
   private http = inject(HttpClient);
 

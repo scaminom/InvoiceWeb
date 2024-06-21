@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 import Swal from 'sweetalert2';
+import { ErrorMessage } from '../../../../../shared/interface/error-message.interface';
 
 @Component({
   selector: 'app-user-form',
@@ -102,14 +103,17 @@ export class UserFormComponent implements OnInit {
           icon: 'success',
         });
       },
-      error: (error) => {
+      error: (infoError) => {
+        console.log(infoError)
+        const errores = infoError.error as ErrorMessage;
+        const formattedDescription = errores.description.map(line =>`<p>${line}</p>`).join('');
         Swal.fire({
-          title: 'Error',
-          html: error.message,
+          title: errores.message,
           icon: 'error',
-          confirmButtonText: 'Aceptar',
+          html: formattedDescription,
         });
-      },
+
+      }
     });
   }
 
@@ -127,14 +131,17 @@ export class UserFormComponent implements OnInit {
           icon: 'success',
         });
       },
-      error: (error) => {
+      error: (infoError) => {
+        console.log(infoError)
+        const errores = infoError.error as ErrorMessage;
+        const formattedDescription = errores.description.map(line =>`<p>${line}</p>`).join('');
         Swal.fire({
-          title: 'Error',
-          html: error.message,
+          title: errores.message,
           icon: 'error',
-          confirmButtonText: 'Aceptar',
+          html: formattedDescription,
         });
-      },
+
+      }
     });
   }
 }
