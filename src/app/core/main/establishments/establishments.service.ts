@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable, inject, signal } from '@angular/core';
 import { IEstablishment } from './interfaces/establishment.iterface';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, tap, throwError } from 'rxjs';
+import { BrowserStorageService } from '../../../shared/services/browser-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,6 @@ export class EstablishmentsService {
   private readonly url =
     'http://ec2-3-128-226-4.us-east-2.compute.amazonaws.com:8080/establecimiento';
   private http = inject(HttpClient);
-  private router = inject(Router);
 
   constructor() {}
 

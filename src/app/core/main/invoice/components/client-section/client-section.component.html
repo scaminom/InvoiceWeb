@@ -1,0 +1,44 @@
+<section
+  class="relative flex w-full border-2 border-cyan-900 rounded-lg p-4 mt-3"
+>
+  <span
+    class="absolute top-0 left-0 transform -translate-y-1/2 bg-zinc-200 px-1 text-black-500"
+    >Cliente</span
+  >
+  <div class="container mx-auto p-4">
+    <div class="mb-4">
+      <label for="search" class="block text-gray-700 text-sm font-bold mb-2"
+        >Buscar Clientes:</label
+      >
+      <input
+        type="text"
+        [formControl]="searchInput"
+        [matAutocomplete]="auto"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        placeholder="Buscar por cedua o ruc..."
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="displayClient"
+        (optionSelected)="onClientSelected($event)"
+      >
+        @for(client of filteredClients | async; track client.id) {
+        <mat-option [value]="client">
+          {{ client.identificacionComprador }} -
+          {{ client.razonSocialComprador }}
+        </mat-option>
+        } @if((filteredClients | async)?.length === 0 && searchInput.value) {
+        <div class="flex">
+          <mat-option disabled>No se encontraron resultados</mat-option>
+          <button
+            class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 py-2 px-5 text-white font-semibold rounded-md shadow-md transition duration-300 ease-in-out"
+            (click)="openDialog()"
+          >
+            Añadir Cliente
+          </button>
+        </div>
+        }
+      </mat-autocomplete>
+    </div>
+  </div>
+</section>

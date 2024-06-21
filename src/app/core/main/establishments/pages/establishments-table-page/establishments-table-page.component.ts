@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { IEstablishment} from '../../interfaces/establishment.iterface';
+import { IEstablishment } from '../../interfaces/establishment.iterface';
 import { EstablishmentsService } from '../../establishments.service';
-import { needConfirmation } from '../../../../../shared/components/confirm-dialog/decorators/confirm-dialog.decorator';
 import { EstablishmentTableComponent } from '../../components/establishments-table-component/establishments-table-component.component';
 import Swal from 'sweetalert2';
 
@@ -13,14 +12,16 @@ import Swal from 'sweetalert2';
   styles: ``,
 })
 export class EstablishmentTablePageComponent implements OnInit {
-  establishments : IEstablishment[] = [];
+  establishments: IEstablishment[] = [];
 
   private establishmentService = inject(EstablishmentsService);
 
   ngOnInit(): void {
-    this.establishmentService.getAllEstablishments().subscribe((establishment) => {
-      this.establishments = establishment;
-    });
+    this.establishmentService
+      .getAllEstablishments()
+      .subscribe((establishment) => {
+        this.establishments = establishment;
+      });
   }
 
    deleteEstablishment(id: string): void {
@@ -35,7 +36,7 @@ export class EstablishmentTablePageComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.establishmentService.deleteEstablishment(id).subscribe(() => {
-          this.establishments = this.establishments.filter((esta) => esta.id !== id);
+          this.establishments = this.establishments.filter((esta) => esta.id !== +id);
         });
       }
     });

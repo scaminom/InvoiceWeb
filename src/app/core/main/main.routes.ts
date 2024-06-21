@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
-import { InvoiceComponent } from './invoice/invoice.component';
 
 export const MainRoutes: Routes = [
   {
@@ -9,7 +8,8 @@ export const MainRoutes: Routes = [
     children: [
       {
         path: 'invoice',
-        component: InvoiceComponent,
+        loadChildren: () =>
+          import('./invoice/invoice.routes').then((m) => m.InoviceRoutes),
       },
       {
         path: 'users',
@@ -41,7 +41,7 @@ export const MainRoutes: Routes = [
         redirectTo: 'users',
         pathMatch: 'full',
       },
-      
+
     ],
   },
 ];

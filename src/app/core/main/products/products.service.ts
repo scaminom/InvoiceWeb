@@ -1,10 +1,8 @@
-import { Injectable, computed, inject, signal } from '@angular/core';
-import { Observable, catchError, debounceTime, map, of, tap } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { BrowserStorageService } from '../../../shared/services/browser-storage.service';
-import { Router } from '@angular/router';
 import { IProduct } from './interfaces/product-interface';
-
+import { ICodigoTarifa } from '../taxes/interfaces/tax.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +10,8 @@ import { IProduct } from './interfaces/product-interface';
 export class ProductsService {
   private readonly url = 'http://ec2-3-128-226-4.us-east-2.compute.amazonaws.com:8080/productos';
   private http = inject(HttpClient);
-  private router = inject(Router);
 
-  constructor() {}
+  constructor() { }
 
   public getAllProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(`${this.url}`);
@@ -36,5 +33,8 @@ export class ProductsService {
     return this.http.delete<IProduct>(`${this.url}/${id}`);
   }
 
+  public getAllTaxsCodes(): Observable<ICodigoTarifa[]> {
+    return this.http.get<ICodigoTarifa[]>('http://localhost:8080/tarifa-iva');
+  }
 
 }

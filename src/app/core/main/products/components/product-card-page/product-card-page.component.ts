@@ -11,12 +11,10 @@ import { CommonModule } from '@angular/common';
   styles: ``,
 })
 export class ProductCardPageComponent {
-   product = input.required<IProduct>();
+  product = input.required<IProduct>();
   deleteProduct = output<number>();
 
-  onDeleteProduct(id: number): void { 
+  onDeleteProduct(id: number): void {
     this.deleteProduct.emit(id);
   }
 }
-
-

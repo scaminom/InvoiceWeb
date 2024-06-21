@@ -1,8 +1,7 @@
-
 import { Component, inject, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { IEstablishment} from '../../interfaces/establishment.iterface';
+import { IEstablishment } from '../../interfaces/establishment.iterface';
 
 @Component({
   selector: 'app-establishment-table',
@@ -13,9 +12,9 @@ import { IEstablishment} from '../../interfaces/establishment.iterface';
 })
 export class EstablishmentTableComponent {
   establishments = input.required<IEstablishment[]>();
-  sendEstablishmentId = output<string>();
+  sendEstablishmentId = output<number>();
 
-  onDeleteEstablishment(id: string): void {
-    this.sendEstablishmentId.emit(id.toString());
+  onDeleteEstablishment(id: number): void {
+    this.sendEstablishmentId.emit(id);
   }
 }
