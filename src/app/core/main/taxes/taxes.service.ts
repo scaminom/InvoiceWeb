@@ -11,7 +11,7 @@ import { ICodigoTarifa } from './interfaces/tax.interface';
   providedIn: 'root',
 })
 export class TaxesService {
-  private readonly url = 'http://localhost:8080/tarifa-iva';
+  private readonly url = 'http://ec2-3-128-226-4.us-east-2.compute.amazonaws.com:8080/tarifa-iva';
   private http = inject(HttpClient);
   private router = inject(Router);
 

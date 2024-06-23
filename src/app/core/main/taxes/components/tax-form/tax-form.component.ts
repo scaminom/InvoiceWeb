@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 import Swal from 'sweetalert2';
 import { TaxesService } from '../../taxes.service';
+import { ErrorMessage } from '../../../../../shared/interface/error-message.interface';
 
 @Component({
   selector: 'app-tax-form',
@@ -49,7 +50,7 @@ export class TaxFormComponent implements OnInit {
 
   initForm(): void {
     this.taxForm = this.formBuilder.group({
-      codigo: ['', [Validators.required('El código es requerido'),Validators.minLength(1,'El código debe ser de una unidad'), Validators.maxLength(1,'El código debe ser de una unidad')]],
+      codigo: ['', [Validators.required('El código es requerido'),Validators.minLength(1,'El código debe ser un numero'), Validators.maxLength(2,'El código debe ser de una unidad')]],
       descripcion: ['', [Validators.required('La descripción es requerido')]],
       porcentaje: ['', [Validators.required('El porcentaje es requerido'),Validators.min(0,'El porcentaje mínimo es de 0.0'), Validators.max(1,'El porcentaje máximo es de 1.0')]],
     });
@@ -84,14 +85,17 @@ export class TaxFormComponent implements OnInit {
           icon: 'success',
         });
       },
-      error: (error) => {
+      error: (infoError) => {
+        const errores = infoError.error as ErrorMessage;
+        const formattedDescription = errores.description.map(line =>`<p>${line}</p>`).join('');
         Swal.fire({
-          title: 'Error',
-          html: error.message,
+          title: errores.message,
           icon: 'error',
-          confirmButtonText: 'Aceptar',
+          html: formattedDescription,
         });
-      },
+
+      }
+      
     });
   }
 
@@ -109,14 +113,17 @@ export class TaxFormComponent implements OnInit {
           icon: 'success',
         });
       },
-      error: (error) => {
+      error: (infoError) => {
+        console.log(infoError)
+        const errores = infoError.error as ErrorMessage;
+        const formattedDescription = errores.description.map(line =>`<p>${line}</p>`).join('');
         Swal.fire({
-          title: 'Error',
-          html: error.message,
+          title: errores.message,
           icon: 'error',
-          confirmButtonText: 'Aceptar',
+          html: formattedDescription,
         });
-      },
+
+      }
     });
   }
 }

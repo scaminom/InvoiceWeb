@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { ReactiveValidationModule, Validators } from 'angular-reactive-validation';
 import { EstablishmentsService } from '../../establishments.service'
+import { ErrorMessage } from '../../../../../shared/interface/error-message.interface';
 
 @Component({
   selector: 'app-establishment-form-component',
@@ -89,9 +90,17 @@ export class EstablishmentFormComponent implements OnInit{
           Swal.fire('Éxito', 'Establecimiento creado correctamente', 'success');
           this.router.navigate(['/dashboard/establishments/lists']);
         },
-        error: () => {
-          Swal.fire('Error', 'No se pudo crear el establecimiento', 'error');
-        },
+        error: (infoError) => {
+          console.log(infoError)
+          const errores = infoError.error as ErrorMessage;
+          const formattedDescription = errores.description.map(line =>`<p>${line}</p>`).join('');
+          Swal.fire({
+            title: errores.message,
+            icon: 'error',
+            html: formattedDescription,
+          });
+  
+        }
       });
     }
 
@@ -104,9 +113,17 @@ export class EstablishmentFormComponent implements OnInit{
           Swal.fire('Éxito', 'Establecimiento actualizado correctamente', 'success');
           this.router.navigate(['/dashboard/establishments/lists']);
         },
-        error: () => {
-          Swal.fire('Error', 'No se pudo actualizar el establecimiento', 'error');
-        },
+        error: (infoError) => {
+          console.log(infoError)
+          const errores = infoError.error as ErrorMessage;
+          const formattedDescription = errores.description.map(line =>`<p>${line}</p>`).join('');
+          Swal.fire({
+            title: errores.message,
+            icon: 'error',
+            html: formattedDescription,
+          });
+  
+        }
       });
     }
 

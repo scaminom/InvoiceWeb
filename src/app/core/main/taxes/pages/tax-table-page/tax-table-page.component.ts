@@ -3,6 +3,7 @@ import { TaxTableComponent } from '../../components/tax-table/tax-table.componen
 import { TaxesService } from '../../taxes.service';
 import { ICodigoTarifa } from '../../interfaces/tax.interface';
 import { needConfirmation } from '../../../../../shared/components/confirm-dialog/decorators/confirm-dialog.decorator';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tax-table-page',
@@ -22,17 +23,21 @@ export class TaxTablePageComponent implements OnInit{
     })
     
   }
-
-  @needConfirmation({
-    title: 'Eliminar Tarifa',
-    message: '¿Estás seguro de eliminar esta tarifa?',
-  })
   deleteTax(id: number): void {
-    this.taxesService.deleteTax(id).subscribe(() => {
-      this.taxes = this.taxes.filter((tax) => tax.id !== id);
+    Swal.fire({
+      title: "¿Estás seguro de eliminar esto?",
+      text: "Los cambios serán irreversibles",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, elimínalo"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.taxesService.deleteTax(id).subscribe(() => {
+          this.taxes = this.taxes.filter((tax) => tax.id !== id);
+        });
+      }
     });
   }
-
-
-
 }

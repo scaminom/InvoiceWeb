@@ -7,12 +7,13 @@ export interface IProduct {
   codigoPrincipal: string;
   nombre:          string;
   descripcion:     string;
-  urlImage:        string;
+  urlImagen:        string;
   existencia:      number;
   precioUnitario:  number;
   activo:          boolean;
   codigoTarifa:    ICodigoTarifa;
 }
+
 
 
 

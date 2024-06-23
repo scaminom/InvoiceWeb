@@ -4,6 +4,7 @@ import { IUser } from '../../../../auth/interfaces/user-interface';
 import { UsersService } from '../../users.service';
 import { RouterLink } from '@angular/router';
 import { needConfirmation } from '../../../../../shared/components/confirm-dialog/decorators/confirm-dialog.decorator';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-table-page',
@@ -23,13 +24,23 @@ export class UserTablePageComponent implements OnInit {
     });
   }
 
-  @needConfirmation({
-    title: 'Eliminar Usuario',
-    message: '¿Estás seguro de eliminar este usuario?',
-  })
+ 
   deleteUser(id: number): void {
-    this.userService.deleteUser(id).subscribe(() => {
-      this.users = this.users.filter((user) => user.id !== id);
+    Swal.fire({
+      title: "¿Estás seguro de eliminar esto?",
+      text: "Los cambios serán irreversibles",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, elimínalo"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUser(id).subscribe(() => {
+          this.users = this.users.filter((user) => user.id !== id);
+        });
+      }
     });
+    
   }
 }

@@ -8,7 +8,7 @@ import { ICodigoTarifa } from '../taxes/interfaces/tax.interface';
   providedIn: 'root',
 })
 export class ProductsService {
-  private readonly url = 'http://localhost:8080/productos';
+  private readonly url = 'http://ec2-3-128-226-4.us-east-2.compute.amazonaws.com:8080/productos';
   private http = inject(HttpClient);
 
   constructor() { }
@@ -21,11 +21,11 @@ export class ProductsService {
     return this.http.get<IProduct>(`${this.url}/${id}`);
   }
 
-  public createProduct(product: IProduct): Observable<IProduct> {
+  public createProduct(product:FormData): Observable<IProduct> {
     return this.http.post<IProduct>(`${this.url}`, product);
   }
 
-  public updateProduct(id: number, product: IProduct): Observable<IProduct> {
+  public updateProduct(id: number, product: FormData): Observable<IProduct> {
     return this.http.put<IProduct>(`${this.url}/${id}`, product);
   }
 

@@ -6,6 +6,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { needConfirmation } from '../../../../../shared/components/confirm-dialog/decorators/confirm-dialog.decorator';
 import { ProductCardPageComponent } from '../../components/product-card-page/product-card-page.component';
 import { MatIcon } from '@angular/material/icon';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-table',
@@ -25,14 +26,21 @@ export class ProductTableComponent implements OnInit{
     });
   }
 
-  @needConfirmation({
-    title: 'Eliminar Producto',
-    message: '¿Estás seguro de eliminar este producto?',
-  })
-  deleteProduct(id: number): void { 
-    this.productService.deleteProduct(id).subscribe(() => {
-        this.products = this.products.filter((product) => product.id !== id);
-      },
-    );
+  deleteProduct(id: number): void {
+    Swal.fire({
+      title: "¿Estás seguro de eliminar esto?",
+      text: "Los cambios serán irreversibles",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, elimínalo"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.deleteProduct(id).subscribe(() => {
+          this.products = this.products.filter((product) => product.id !== id);
+        });
+      }
+    });
   }
 }

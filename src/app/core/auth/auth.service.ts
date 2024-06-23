@@ -19,7 +19,7 @@ import { IUser } from './interfaces/user-interface';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly url = 'http://localhost:8080/auth';
+  private readonly url = 'http://ec2-3-128-226-4.us-east-2.compute.amazonaws.com:8080/auth';
   private http = inject(HttpClient);
   private router = inject(Router);
   private localStorage = inject(BrowserStorageService);

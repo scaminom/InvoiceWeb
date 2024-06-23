@@ -8,7 +8,8 @@ import { BrowserStorageService } from '../../../shared/services/browser-storage.
   providedIn: 'root',
 })
 export class EstablishmentsService {
-  private readonly url = 'http://localhost:8080/establecimiento';
+  private readonly url =
+    'http://ec2-3-128-226-4.us-east-2.compute.amazonaws.com:8080/establecimiento';
   private http = inject(HttpClient);
 
   constructor() {}
@@ -24,34 +25,17 @@ export class EstablishmentsService {
   public createEstablishment(
     establishment: IEstablishment
   ): Observable<IEstablishment> {
-    return this.http.post<IEstablishment>(`${this.url}`, establishment).pipe(
-      catchError((error) => {
-        let errorMessage = Object.values(error.error).join('<br>');
-        return throwError(() => new Error(errorMessage));
-      })
-    );
+    return this.http.post<IEstablishment>(`${this.url}`, establishment);
   }
 
   public updateEstablishment(
     id: number,
     establishment: IEstablishment
   ): Observable<IEstablishment> {
-    return this.http
-      .put<IEstablishment>(`${this.url}/${id}`, establishment)
-      .pipe(
-        catchError((error) => {
-          let errorMessage = Object.values(error.error).join('<br>');
-          return throwError(() => new Error(errorMessage));
-        })
-      );
+    return this.http.put<IEstablishment>(`${this.url}/${id}`, establishment);
   }
 
-  public deleteEstablishment(id: number): Observable<IEstablishment> {
-    return this.http.delete<IEstablishment>(`${this.url}/${id}`).pipe(
-      catchError((error) => {
-        let errorMessage = Object.values(error.error).join('<br>');
-        return throwError(() => new Error(errorMessage));
-      })
-    );
+  public deleteEstablishment(id: string): Observable<IEstablishment> {
+    return this.http.delete<IEstablishment>(`${this.url}/${id}`);
   }
 }

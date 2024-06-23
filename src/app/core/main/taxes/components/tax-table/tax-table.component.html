@@ -5,7 +5,7 @@
       routerLink="/dashboard/taxes/create"
     >
       <div class="flex justify-center items-center">
-        <mat-icon>store</mat-icon>
+        <mat-icon>monetization_on</mat-icon>
         <span class="mx-1"></span>
         Nueva tarifa
       </div>
@@ -14,29 +14,29 @@
   
   <div class="overflow-x-auto md:rounded-lg">
     <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-200">
+      <thead class="bg-gray-300">
         <tr>
           <th
             scope="col"
-            class="text-sm font-medium uppercase text-gray-500 px-3 py-2 text-center"
+            class="text-sm font-medium uppercase text-gray-900 px-3 py-2 text-center"
           >
             <span>Codigo</span>
           </th>
           <th
             scope="col"
-            class="text-sm font-medium uppercase text-gray-500 px-3 py-2 text-center"
+            class="text-sm font-medium uppercase text-gray-900 px-3 py-2 text-center"
           >
             <span>Descripción</span>
           </th>
           <th
             scope="col"
-            class="text-sm font-medium uppercase text-gray-500 px-3 py-2 text-center"
+            class="text-sm font-medium uppercase text-gray-900 px-3 py-2 text-center"
           >
             <span>Porcentaje</span>
           </th>
           <th
             scope="col"
-            class="text-sm font-medium uppercase text-gray-500 px-3 py-2 text-center"
+            class="text-sm font-medium uppercase text-gray-900 px-3 py-2 text-center"
           >
             <span>Acciones </span>
           </th>
@@ -44,30 +44,30 @@
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
         @for(tax of taxes(); track tax) {
-        <tr class="even:bg-gray-100 odd:bg-white">
-          <td class="px-3 py-2 text-sm font-medium whitespace-nowrap">
+        <tr class="even:bg-gray-200 odd:bg-gray-50">
+          <td class="px-3 py-1 text-sm font-medium whitespace-nowrap">
             <div>
-              <p class="text-sm text-gray-500 font-light px-3 py-2 whitespace-nowrap text-center">
+              <p class="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap text-center">
                 {{ tax.codigo }}
               </p>
             </div>
           </td>
-          <td class="px-3 py-2 text-sm font-medium whitespace-nowrap">
+          <td class="px-3 py-1 text-sm font-medium whitespace-nowrap">
             <div>
-              <p class="text-sm text-gray-500 font-light px-3 py-2 whitespace-nowrap text-center">
+              <p class="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap text-center">
                 {{ tax.descripcion }}
               </p>
             </div>
           </td>
-          <td class="px-3 py-2 text-sm font-medium whitespace-nowrap">
+          <td class="px-3 py-1 text-sm font-medium whitespace-nowrap">
             <div>
-              <p class="text-sm text-gray-500 font-light px-3 py-2 whitespace-nowrap text-center">
+              <p class="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap text-center">
                 {{ tax.porcentaje}}
               </p>
             </div>
           </td>
       
-          <td class="px-3 py-2 text-sm whitespace-nowrap">
+          <td class="px-3 py-1 text-sm whitespace-nowrap">
             <div class="flex items-center gap-x-6 justify-center">
               <button
                 class="text-red-400 transition-colors duration-200 hover:text-red-800 focus:outline-none"
