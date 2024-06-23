@@ -24,7 +24,7 @@ export class EstablishmentTablePageComponent implements OnInit {
       });
   }
 
-   deleteEstablishment(id: string): void {
+   deleteEstablishment(id: number): void {
     Swal.fire({
       title: "¿Estás seguro de eliminar esto?",
       text: "Los cambios serán irreversibles",
@@ -35,8 +35,8 @@ export class EstablishmentTablePageComponent implements OnInit {
       confirmButtonText: "Sí, elimínalo"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.establishmentService.deleteEstablishment(id).subscribe(() => {
-          this.establishments = this.establishments.filter((esta) => esta.id !== +id);
+        this.establishmentService.deleteEstablishment(id.toString()).subscribe(() => {
+          this.establishments = this.establishments.filter((esta) => esta.id !== id);
         });
       }
     });
