@@ -53,10 +53,10 @@ export class EstablishmentFormComponent implements OnInit{
 
     initForm(): void {
       this.establishmentForm = this.formBuilder.group({
-        ruc: ['', Validators.required('El RUC del establecimiento es requerido')],
-        estab: ['', [Validators.required('El número del establecimiento es requerido'),Validators.minLength(3,'Mínimo 3 caracteres'), Validators.maxLength(3, 'Máximo 3 caracteres')]],
+        ruc: ['', [Validators.required('El RUC del establecimiento es requerido'), Validators.pattern(/^\d+$/, 'Este campo debe contener solo números')]],
+        estab: ['', [Validators.required('El número del establecimiento es requerido'),Validators.minLength(3,'Mínimo 3 caracteres'), Validators.maxLength(3, 'Máximo 3 caracteres'), Validators.pattern(/^\d+$/, 'Este campo debe contener solo números')]],
         razonSocial: ['', Validators.required('La razón social es requerida')],
-        ptoEmi: ['', [Validators.required('El punto de emisión es requerido'),Validators.minLength(3,'Mínimo 3 caracteres'), Validators.maxLength(3, 'Máximo 3 caracteres')]],
+        ptoEmi: ['', [Validators.required('El punto de emisión es requerido'),Validators.minLength(3,'Mínimo 3 caracteres'), Validators.maxLength(3, 'Máximo 3 caracteres'), Validators.pattern(/^\d+$/, 'Este campo debe contener solo números')]],
         ambiente: ['', Validators.required('El ambiente es requerido')],
         obligadoContabilidad: ['', Validators.required('Obligado a contabilidad es un campo requerido')],
         dirEstablecimiento: ['', Validators.required('La dirección del establecimiento es requerida')],

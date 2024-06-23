@@ -74,10 +74,10 @@ export class ProductFormComponent implements OnInit {
         '',
         Validators.required('La descripcion del producto es requerido'),
       ],
-      existencia: ['', Validators.required('La existencia es requerido')],
+      existencia: ['', [Validators.required('La existencia es requerido'), Validators.pattern(/^\d+$/, 'Este campo debe contener solo números')]],
       precioUnitario: [
         '',
-        Validators.required('El precio unitario es requerido'),
+        [Validators.required('El precio unitario es requerido'),Validators.pattern(/^[-+]?\d*\.?\d*$/, 'Este campo debe contener solo números')]
       ],
       codigoTarifa: ['', Validators.required('La tarifa de IVA es requerida')],
     });

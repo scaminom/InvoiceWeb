@@ -17,37 +17,37 @@
       <tr>
         <th
           scope="col"
-          class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500"
+          class="py-3.5 px-6 text-sm font-medium uppercase text-left rtl:text-right text-gray-900"
         >
           <span>N.Factura</span>
         </th>
         <th
           scope="col"
-          class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500"
+          class="py-3.5 px-6 text-sm font-medium uppercase text-left rtl:text-right text-gray-900"
         >
           <span>Cliente</span>
         </th>
         <th
           scope="col"
-          class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500"
+          class="py-3.5 px-6 text-sm font-medium uppercase text-left rtl:text-right text-gray-900"
         >
           <span>Fecha Emision</span>
         </th>
         <th
           scope="col"
-          class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500"
+          class="py-3.5 px-6 text-sm font-medium uppercase text-left rtl:text-right text-gray-900"
         >
           <span>Total</span>
         </th>
         <th
           scope="col"
-          class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500"
+          class="py-3.5 px-6 text-sm font-medium uppercase text-left rtl:text-right text-gray-900"
         >
           <span>Estado</span>
         </th>
         <th
           scope="col"
-          class="py-3.5 px-6 text-sm font-normal text-left rtl:text-right text-gray-500"
+          class="py-3.5 px-6 text-sm font-medium uppercase text-left rtl:text-right text-gray-900"
         >
           <span>Acciones </span>
         </th>
@@ -55,46 +55,46 @@
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
       @for(invoice of invoices(); track invoice) {
-      <tr class="even:bg-gray-100 odd:bg-white">
-        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
+      <tr class="even:bg-gray-200 odd:bg-gray-50">
+        <td class="px-4 py-1 text-sm font-medium whitespace-nowrap">
           <div>
-            <p class="text-sm font-normal text-gray-400">
+            <p class="text-sm text-gray-900 font-light px-4 py-1 whitespace-nowrap text-center">
               {{ invoice.secuencial }}
             </p>
           </div>
         </td>
-        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
+        <td class="px-4 py-1 text-sm font-medium whitespace-nowrap">
           <div>
-            <p class="text-sm font-normal text-gray-400">
+            <p class="text-sm text-gray-900 font-light px-4 py-1 whitespace-nowrap text-center">
               {{ invoice.cliente.razonSocialComprador }}
             </p>
           </div>
         </td>
-        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
+        <td class="px-4 py-1 text-sm font-medium whitespace-nowrap">
           <div>
-            <p class="text-sm font-normal text-gray-400">
+            <p class="text-sm text-gray-900 font-light px-4 py-1 whitespace-nowrap text-center">
               {{ invoice.fechaEmision | date : "dd/MM/yyyy" }}
             </p>
           </div>
         </td>
-        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
+        <td class="px-4 py-1 text-sm font-medium whitespace-nowrap">
           <div>
-            <p class="text-sm font-normal text-gray-400">
+            <p class="text-sm text-gray-900 font-light px-4 py-1 whitespace-nowrap text-center">
               {{ invoice.importeTotal | currency : "USD" : "symbol" }}
             </p>
           </div>
         </td>
-        <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
+        <td class="px-4 py-1 text-sm font-medium whitespace-nowrap">
           <div>
-            <p class="text-sm font-normal text-gray-400">
+            <p class="text-sm text-gray-900 font-light px-4 py-1 whitespace-nowrap text-center">
               {{ invoice.estado }}
             </p>
           </div>
         </td>
-        <td class="px-6 py-4 text-sm whitespace-nowrap">
+        <td class="px-4 py-1 text-sm font-medium whitespace-nowrap">
           <div class="flex items-center">
             <button
-              class="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none"
+              class="text-red-400 transition-colors duration-200 hover:text-red-800 focus:outline-none"
               [routerLink]="['/dashboard/invoices/edit-invoice/', invoice.id]"
             >
               <svg

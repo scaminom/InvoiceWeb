@@ -50,9 +50,9 @@ export class TaxFormComponent implements OnInit {
 
   initForm(): void {
     this.taxForm = this.formBuilder.group({
-      codigo: ['', [Validators.required('El código es requerido'),Validators.minLength(1,'El código debe ser un numero'), Validators.maxLength(2,'El código debe ser de una unidad')]],
-      descripcion: ['', [Validators.required('La descripción es requerido')]],
-      porcentaje: ['', [Validators.required('El porcentaje es requerido'),Validators.min(0,'El porcentaje mínimo es de 0.0'), Validators.max(1,'El porcentaje máximo es de 1.0')]],
+      codigo: ['', [Validators.required('El código es requerido'),Validators.minLength(1,'El código debe ser un numero'), Validators.maxLength(2,'El código debe ser de una unidad'), Validators.pattern(/^\d+$/, 'Este campo debe contener solo números')]],
+      descripcion: ['', [Validators.required('La descripción es requerido'),Validators.pattern(/^[-+]?\d*\.?\d*$/, 'Este campo debe contener solo números')]],
+      porcentaje: ['', [Validators.required('El porcentaje es requerido'),Validators.min(0,'El porcentaje mínimo es de 0.0'), Validators.max(1,'El porcentaje máximo es de 1.0'),Validators.pattern(/^[-+]?\d*\.?\d*$/, 'Este campo debe contener solo números')]],
     });
   }
 
