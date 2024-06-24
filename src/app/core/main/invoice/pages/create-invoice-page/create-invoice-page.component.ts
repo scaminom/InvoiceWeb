@@ -7,7 +7,10 @@ import { InvoiceService } from '../../invoice.service';
 import { CalculateValuesComponent } from '../../components/calculate-values/calculate-values.component';
 import { TotalResponseInterface } from '../../interfaces/total-response.interface';
 import { Router } from '@angular/router';
-import { ErrorMessage } from '../../../../../shared/interface/error-message.interface';
+import {
+  ErrorMessage,
+  ErroSRI,
+} from '../../../../../shared/interface/error-message.interface';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,7 +21,6 @@ import Swal from 'sweetalert2';
     ClientSectionComponent,
     ItemSectionComponent,
     CalculateValuesComponent,
-
   ],
   templateUrl: './create-invoice-page.component.html',
   styles: ``,
@@ -43,15 +45,32 @@ export class CreateInvoicePageComponent implements OnInit {
           this.router.navigate(['/dashboard/invoice']);
         },
         error: (infoError) => {
-          const errores = infoError.error as ErrorMessage;
-          const formattedDescription = errores.description.map(line =>`<p>${line}</p>`).join('');
+          const errores = infoError.error as ErrorMessage | ErroSRI;
+
+          let title: string;
+          let formattedDescription: string;
+
+          if ('message' in errores) {
+            // Es de tipo ErrorMessage
+            title = errores.message;
+            formattedDescription = errores.description
+              .map((line) => `<p>${line}</p>`)
+              .join('');
+          } else {
+            // Es de tipo ErroSRI
+            title = errores.estado;
+            formattedDescription = errores.mensanje
+              .map((line) => `<p>${line}</p>`)
+              .join('');
+          }
+
+          // Mostrar la alerta con SweetAlert
           Swal.fire({
-            title: errores.message,
+            title: title,
             icon: 'error',
             html: formattedDescription,
           });
-  
-        }
+        },
       });
     }
   }
