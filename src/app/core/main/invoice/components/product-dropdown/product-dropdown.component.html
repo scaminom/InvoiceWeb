@@ -13,7 +13,10 @@
   >
     @for(product of filteredProducts | async; track product.id) {
     <mat-option [value]="product">
-      {{ product.codigoPrincipal }} - {{ product.nombre }}
+      <div class="flex flex-row gap-2">
+        <img [src]="product.urlImagen" width="30" height="30" alt="" />
+        {{ product.nombre }}
+      </div>
     </mat-option>
 
     }

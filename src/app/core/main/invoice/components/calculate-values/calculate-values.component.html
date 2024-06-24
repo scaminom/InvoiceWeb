@@ -1,4 +1,15 @@
-<p class="font-normal text-lg">Total sin impuestos: {{ values()?.totalSinImpuestos }}</p>
-<p class="font-normal text-lg">Total descuento: {{ values()?.totalDescuento }}</p>
-<p class="font-normal text-lg">Propina: {{ values()?.propina }}</p>
-<p class="font-semibold text-xl">Importe total: {{ values()?.importeTotal }}</p>
+<div class="p-4 bg-white shadow-md rounded-lg">
+    <p class="font-normal text-lg text-gray-800 mb-1">
+      Total sin impuestos: <span class="font-medium text-gray-900">{{ values()?.totalSinImpuestos }}</span>
+    </p>
+    <p class="font-normal text-lg text-gray-800 mb-1">
+      Total descuento: <span class="font-medium text-gray-900">{{ values()?.totalDescuento }}</span>
+    </p>
+    <p class="font-normal text-lg text-gray-800 mb-1">
+      Propina: <span class="font-medium text-gray-900">{{ values()?.propina }}</span>
+    </p>
+    <p class="font-semibold text-xl text-gray-900 mt-2">
+      Importe total: <span class="text-cyan-900">{{ values()?.importeTotal }}</span>
+    </p>
+  </div>
+  

@@ -6,6 +6,9 @@ import { Invoice } from '../../interfaces/invoice-bh.interface';
 import { InvoiceService } from '../../invoice.service';
 import { CalculateValuesComponent } from '../../components/calculate-values/calculate-values.component';
 import { TotalResponseInterface } from '../../interfaces/total-response.interface';
+import { Router } from '@angular/router';
+import { ErrorMessage } from '../../../../../shared/interface/error-message.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-invoice-page',
@@ -15,6 +18,7 @@ import { TotalResponseInterface } from '../../interfaces/total-response.interfac
     ClientSectionComponent,
     ItemSectionComponent,
     CalculateValuesComponent,
+
   ],
   templateUrl: './create-invoice-page.component.html',
   styles: ``,
@@ -24,6 +28,7 @@ export class CreateInvoicePageComponent implements OnInit {
   total!: TotalResponseInterface;
 
   private invoiceService = inject(InvoiceService);
+  public router = inject(Router);
 
   ngOnInit(): void {
     this.invoiceService.getInvoice().subscribe((invoice) => {
@@ -35,11 +40,18 @@ export class CreateInvoicePageComponent implements OnInit {
     if (this.invoice) {
       this.invoiceService.sendInvoice(this.invoice).subscribe({
         next: (response) => {
-          console.log('Response', response);
+          this.router.navigate(['/dashboard/invoice']);
         },
-        error: (error) => {
-          console.error('Error', error);
-        },
+        error: (infoError) => {
+          const errores = infoError.error as ErrorMessage;
+          const formattedDescription = errores.description.map(line =>`<p>${line}</p>`).join('');
+          Swal.fire({
+            title: errores.message,
+            icon: 'error',
+            html: formattedDescription,
+          });
+  
+        }
       });
     }
   }

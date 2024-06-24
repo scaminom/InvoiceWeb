@@ -1,8 +1,8 @@
-<div class="h-full bg-slate-1000 p-2 rounded">
+<div class="h-full flex flex-col gap-3 bg-slate-1000 p-2 rounded">
   <h2>Crear Factura</h2>
   <app-emisor-section />
   <app-client-section />
   <app-item-section (totalChanged)="onTotalChanged($event)" />
   <app-calculate-values [values]="total" />
-  <button mat-button (click)="sendData()" class="bg-teal-600 hover:bg-teal-700 focus:bg-teal-800 text-white font-bold py-2 px-4 rounded">Enviar Factura</button>
+  <button mat-button (click)="sendData()" class="bg-teal-600 max-w-60 hover:bg-teal-700 focus:bg-teal-800 text-white font-bold py-2 px-4 rounded">Enviar Factura</button>
 </div>

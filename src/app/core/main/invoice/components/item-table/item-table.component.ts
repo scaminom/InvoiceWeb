@@ -8,6 +8,8 @@ import { ItemResponse } from '../../interfaces/item-response.interface';
 import { Item } from '../../interfaces/invoice-bh.interface';
 import { TotalResponseInterface } from '../../interfaces/total-response.interface';
 import { InvoiceService } from '../../invoice.service';
+import { ErrorMessage } from '../../../../../shared/interface/error-message.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-item-table',
@@ -92,8 +94,21 @@ export class ItemTableComponent {
   }
 
   private recalculateTotals(): void {
-    this.invoiceService.calculateValues().subscribe((response) => {
-      this.totalChanged.set(response);
+    this.invoiceService.calculateValues().subscribe({
+      next: (response) => {
+        this.totalChanged.set(response);
+      },
+      error: (infoError) => {
+        const errores = infoError.error as ErrorMessage;
+        const formattedDescription = errores.description
+          .map((line) => `<p>${line}</p>`)
+          .join('');
+        Swal.fire({
+          title: errores.message,
+          icon: 'error',
+          html: formattedDescription,
+        });
+      },
     });
   }
 

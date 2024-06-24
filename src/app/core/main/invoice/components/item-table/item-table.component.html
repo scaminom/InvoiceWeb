@@ -1,54 +1,56 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full rounded-lg overflow-hidden">
   <ng-container matColumnDef="code">
-    <th mat-header-cell *matHeaderCellDef>Codigo</th>
-    <td mat-cell *matCellDef="let element">
+    <th mat-header-cell *matHeaderCellDef class="bg-cyan-900 py-3 px-4">Código</th>
+    <td mat-cell *matCellDef="let element" class="py-2 px-4">
       {{ element.product.codigoPrincipal }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef>Descripción</th>
-    <td mat-cell *matCellDef="let element">
+    <th mat-header-cell *matHeaderCellDef class="bg-cyan-900 py-3 px-4">Descripción</th>
+    <td mat-cell *matCellDef="let element" class="py-2 px-4">
       {{ element.product.descripcion }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="precio">
-    <th mat-header-cell *matHeaderCellDef>Precio Unitario</th>
-    <td mat-cell *matCellDef="let element">
+    <th mat-header-cell *matHeaderCellDef class="bg-cyan-900  py-3 px-4">Precio Unitario</th>
+    <td mat-cell *matCellDef="let element" class="py-2 px-4">
       {{ element.product.precioUnitario | currency : "USD" }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="quantity">
-    <th mat-header-cell *matHeaderCellDef>Cantidad</th>
-    <td mat-cell *matCellDef="let element">
+    <th mat-header-cell *matHeaderCellDef class="bg-cyan-900py-3 px-4">Cantidad</th>
+    <td mat-cell *matCellDef="let element" class="py-2 px-4">
       <input
         #quantityInput
         type="number"
         [(ngModel)]="element.cantidad"
         (ngModelChange)="onQuantityChange(element)"
         [ngModelOptions]="{ updateOn: 'blur' }"
+        class="w-full p-1 border border-gray-300 rounded"
       />
     </td>
   </ng-container>
 
   <ng-container matColumnDef="discount">
-    <th mat-header-cell *matHeaderCellDef>Descuento</th>
-    <td mat-cell *matCellDef="let element">
+    <th mat-header-cell *matHeaderCellDef class="bg-cyan-900 py-3 px-4">Descuento</th>
+    <td mat-cell *matCellDef="let element" class="py-2 px-4">
       <input
         type="number"
         [(ngModel)]="element.descuento"
         (ngModelChange)="onDiscountChange(element)"
         [ngModelOptions]="{ updateOn: 'blur' }"
+        class="w-full p-1 border border-gray-300 rounded"
       />
     </td>
   </ng-container>
 
   <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>Acciones</th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-button (click)="deleteItem(element)">Eliminar</button>
+    <th mat-header-cell *matHeaderCellDef class="bg-cyan-900 py-3 px-4">Acciones</th>
+    <td mat-cell *matCellDef="let element" class="py-2 px-4">
+      <button mat-button class="text-red-500 hover:text-red-700" (click)="deleteItem(element)">Eliminar</button>
     </td>
   </ng-container>
 

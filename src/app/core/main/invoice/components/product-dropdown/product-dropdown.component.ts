@@ -44,7 +44,7 @@ export class ProductDropdownComponent implements OnInit {
     const filteredValue = stringValue.toLowerCase();
 
     return this.products.filter((product) =>
-      product.codigoPrincipal.includes(filteredValue)
+      product.nombre.toLowerCase().includes(filteredValue)
     );
   }
 
