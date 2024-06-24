@@ -11,7 +11,6 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { ILoginResponse } from './interfaces/login-response.interface';
 import { BrowserStorageService } from '../../shared/services/browser-storage.service';
-import { Router } from '@angular/router';
 import { AuthStatus } from './enums/auth-status.enum';
 import { IUser } from './interfaces/user-interface';
 
@@ -19,9 +18,9 @@ import { IUser } from './interfaces/user-interface';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly url = 'http://ec2-3-128-226-4.us-east-2.compute.amazonaws.com:8080/auth';
+  private readonly url =
+    'http://ec2-3-128-226-4.us-east-2.compute.amazonaws.com:8080/auth';
   private http = inject(HttpClient);
-  private router = inject(Router);
   private localStorage = inject(BrowserStorageService);
 
   private _authStatus = signal<AuthStatus>(AuthStatus.CHECKING);
