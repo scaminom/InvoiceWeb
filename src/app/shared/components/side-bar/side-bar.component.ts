@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../../core/auth/auth.service';
+import { IUser } from '../../../core/auth/interfaces/user-interface';
 
 @Component({
   selector: 'app-side-bar',
@@ -9,4 +11,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './side-bar.component.html',
   styles: ``,
 })
-export class SideBarComponent { }
+export class SideBarComponent {
+  private authServce = inject(AuthService);
+
+  public getUser(): IUser | null {
+    return this.authServce?.currentUser;
+  }
+}

@@ -6,56 +6,45 @@
     </div>
     <div class="my-2 bg-gray-600 h-[1px]"></div>
   </div>
-  <div
-    class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-800 text-white"
-    routerLink="/dashboard/invoice"
-  >
+
+  <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-800 text-white"
+    routerLink="/dashboard/invoice">
     <mat-icon>description</mat-icon>
     <span class="text-[15px] ml-4 text-gray-200 font-bold hover:italic">Factura</span>
   </div>
 
-  <div
-    class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-800 text-white"
-    routerLink="/dashboard/users"
-  >
+  @if(getUser()?.role === 'ADMIN') {
+  <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-800 text-white"
+    routerLink="/dashboard/users">
     <mat-icon>person</mat-icon>
     <span class="text-[15px] ml-4 text-gray-200 font-bold hover:italic">Usuarios</span>
   </div>
+  }
 
-  <div
-    class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-800 text-white"
-    routerLink="/dashboard/products"
-  >
+  <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-800 text-white"
+    routerLink="/dashboard/products">
     <mat-icon>widgets</mat-icon>
     <span class="text-[15px] ml-4 text-gray-200 font-bold hover:italic">Productos</span>
   </div>
 
-  <div
-    class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-800 text-white"
-    routerLink="/dashboard/clients"
-  >
+  <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-800 text-white"
+    routerLink="/dashboard/clients">
     <mat-icon>people</mat-icon>
     <span class="text-[15px] ml-4 text-gray-200 font-bold hover:italic">Clientes</span>
   </div>
 
-  <div
-    class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-800 text-white"
-    routerLink="/dashboard/establishments"
-  >
+  @if(getUser()?.role === 'ADMIN') {
+  <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-800 text-white"
+    routerLink="/dashboard/establishments">
     <mat-icon>store</mat-icon>
-    <span class="text-[15px] ml-4 text-gray-200 font-bold hover:italic"
-      >Establecimientos</span
-    >
+    <span class="text-[15px] ml-4 text-gray-200 font-bold hover:italic">Establecimientos</span>
   </div>
-  <div
-    class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-800 text-white"
-    routerLink="/dashboard/taxes"
-  >
+  }
+
+  <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-800 text-white"
+    routerLink="/dashboard/taxes">
     <mat-icon>monetization_on</mat-icon>
-    <span
-      class="text-[15px] ml-4 text-gray-200 font-bold hover:italic"
-      routerLink="/dashboard/taxes/lists"
-      >Tarifas</span
-    >
+    <span class="text-[15px] ml-4 text-gray-200 font-bold hover:italic"
+      routerLink="/dashboard/taxes/lists">Tarifas</span>
   </div>
 </div>
