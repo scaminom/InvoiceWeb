@@ -52,14 +52,14 @@ export class ClientFormComponent implements OnInit {
   initForm(): void {
     this.clientForm = this.formBuilder.group({
       identificacionComprador: [
-        '',
-        Validators.required('El identificador es requerido'),
+        '',[
+        Validators.required('El identificador es requerido'), Validators.pattern(/^\d+$/, 'Este campo debe contener solo números')]
       ],
       tipoIdentificacion: [
         '',
         Validators.required('El tipo de identificador es requerido'),
       ],
-      razonSocialComprador: ['', Validators.required('La razon es requerido')],
+      razonSocialComprador: ['', Validators.required('La razon es requerida')],
       direccionComprador: [
         '',
         Validators.required('La direccion es requerido'),

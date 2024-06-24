@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../users.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import {
   ReactiveValidationModule,
   Validators,
@@ -48,10 +48,12 @@ export class UserFormComponent implements OnInit {
     }
   }
 
+  
+
   initForm(): void {
     this.userForm = this.formBuilder.group({
-      firstName: ['', [Validators.required('El nombre es requerido')]],
-      lastName: ['', [Validators.required('El apellido es requerido')]],
+      firstName: ['', [Validators.required('El nombre es requerido'),Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/, 'El nombre debe contener solo letras')]],
+      lastName: ['', [Validators.required('El apellido es requerido'),Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/, 'El apellido debe contener solo letras')]],
       username: ['', [Validators.required('El username es requerido')]],
       email: [
         '',
