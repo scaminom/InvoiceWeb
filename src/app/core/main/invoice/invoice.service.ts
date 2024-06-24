@@ -10,7 +10,8 @@ import { TotalResponseInterface } from './interfaces/total-response.interface';
 })
 export class InvoiceService {
   private http = inject(HttpClient);
-  private readonly url = 'http://ec2-3-128-226-4.us-east-2.compute.amazonaws.com:8080/factura';
+  private readonly url =
+    'http://ec2-3-128-226-4.us-east-2.compute.amazonaws.com:8080/factura';
   private invoiceSubject = new BehaviorSubject<Invoice>({
     propina: 0,
     pagos: { formaPago: 'EFECTIVO' },
@@ -47,6 +48,10 @@ export class InvoiceService {
 
   public getInvoice(): Observable<Invoice> {
     return this.invoiceSubject.asObservable();
+  }
+
+  public getInvoiceByID(id: number): Observable<InvoiceResponseInterface> {
+    return this.http.get<InvoiceResponseInterface>(`${this.url}/${id}`);
   }
 
   public updateInvoice(invoice: Invoice): void {
